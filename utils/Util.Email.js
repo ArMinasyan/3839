@@ -11,7 +11,7 @@ const oauth2Client = new OAuth2(process.env.CLIENT_ID, process.env.CLIENT_ID, "h
 oauth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
 
-let send_mail = mailer.createTransport({
+const send_mail = mailer.createTransport({
     service: 'gmail',
     auth: {
         type: "OAuth2",
@@ -23,7 +23,7 @@ let send_mail = mailer.createTransport({
     }
 });
 
-let send = async (to, pin) => {
+const send = async (to, pin) => {
 
 
 
