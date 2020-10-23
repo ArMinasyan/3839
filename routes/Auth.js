@@ -12,6 +12,7 @@ const route = Router();
 
 route.post('/auth/sign_up', Validator_SignUp, SignUp);
 route.post('/auth/sign_in', Validator_SignIn, SignIn);
+
 route.post('/auth/send_pin_email', SendPinEmail);
 
 route.post('/auth/send_pin_phone', sendCode);

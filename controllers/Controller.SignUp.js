@@ -4,7 +4,7 @@ const { CreateHash } = require('../utils/Util.Hash');
 const SendEmail = require('../utils/Util.Email');
 module.exports = (req, res, next) => {
     const valid = validationResult(req);
-    if (!valid.isEmpty()) res.send(valid.array()[0].msg); else {
+    if (!valid.isEmpty()) res.json({ err: valid.array()[0] }); else {
         const { email, password, country, phone_number, bussines_name, age, services } = req.body;
         User.findOne({ email: email }).then(result => {
             if (result === null) {

@@ -9,6 +9,8 @@ const app = express();
 
 const HttpServer = createServer(app);
 
+app.use(express.static(__dirname + '/public'));
+
 let config = null;
 if (process.env.NODE_ENV) config = require('./config.json').development;
 else config = require('./config.json').production;
@@ -29,9 +31,19 @@ const Auth = require('./routes/Auth');
 app.use('/api', Auth);
 
 const { VerifyToken } = require('./utils/Util.Token');
+
 app.post('/test', VerifyToken, (req, res, next) => {
     res.send('Login');
 })
+
+app.get('/', (req, res, next) => {
+    res.sendFile(__dirname + '/views/index.html');
+})
+
+app.get('/sign_up', (req, res, next) => {
+    res.sendFile(__dirname + '/views/sign-like-therapist.html');
+})
+
 HttpServer.listen(8080, () => {
     console.log('Start');
 })

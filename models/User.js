@@ -15,5 +15,7 @@ module.exports = model('user', {
     phone: String,
     bussines_name: String,
     age: Number,
-    services: String
+    services: String,
+    session_format: String,
+    age_speciality: Number,
 })
