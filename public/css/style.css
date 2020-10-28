@@ -621,6 +621,51 @@ footer .footer_banner {
     text-align: center;
 }
 
+.startPage_body input{
+    padding-left: 54px;
+    margin-bottom: 20px;
+    width: 456px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #F3F3F3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: "SFProDisplay-Light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    color: #AAAAAA;
+}
+
+.startPage_body .loginContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+}
+
+.startPage_body .signin_error{
+    font-size: 24px;
+    color: red;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+.startPage_body .loginContainer .input_container{
+    margin: 0 auto;
+}
+
+.startPage_body .loginContainer .input_container button{
+    padding-left: 0;
+    font-family: "SFProDisplay-Bold";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+     color: #FFFFFF; 
+    height: 48px;
+    cursor: pointer;
+}
+
 .startPage_body .logo {
     padding-top: 47px;
 }
@@ -1921,15 +1966,16 @@ p.price_bottomText {
     justify-content: space-around;
 }
 
-.input_container--sub > span{
-    display: block;
-    border: 1px solid #555252;
+.input_container--sub > button{
+    width: 120px;
+    border: 1px solid #F3F3F3;
+    color: #00ADB9;
     height: 5vh;
     margin-left: 5px;
-
+    border-radius: 5px;
 }
 
-.input_container--sub > span:hover{
+.input_container--sub > button:hover{
     cursor: pointer;
 }
 
@@ -1937,6 +1983,7 @@ p.price_bottomText {
     display: none;
     margin-top: -20px;
     margin-bottom: 10px;
+    font-size: 1.1em;
 color: red;
 }
 
@@ -1967,18 +2014,17 @@ color: red;
 }
 
 .form-step-bar {
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
     width: 100%;
     margin-bottom: 30px;
 }
 
 .form-step-bar > div {
-    width: 33.3333%;
+    width: 50%;
 }
 
 .step-item {
-    float: left;
-    display: inline-block;
     cursor: pointer;
     padding-bottom: 9px;
     border-bottom: 10px solid #E6E6E6;
@@ -1991,7 +2037,7 @@ color: red;
     display: inline-block;
     background: #D2D2D2;
     margin-right: 5px;
-    float: left;
+ 
     text-align: center;
     padding: 3px;
     font-family: "SFProDisplay-Medium";
@@ -2003,7 +2049,7 @@ color: red;
 }
 
 .step-text {
-    float: left;
+    
     display: inline-block;
 }
 

@@ -41,6 +41,7 @@ const send = async (to, pin) => {
             subject: 'Email Verification',
             generateTextFromHTML: false
         }, function (err, info) {
+            console.log(err);
             if (err) res(false);
             if (info) {
                 send_mail.close();

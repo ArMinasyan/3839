@@ -90,22 +90,12 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="step-item">
-                            <div class="step-icon">3</div>
-                            <div class="step-text">
-                                <svg width="12" height="10" viewBox="0 0 12 10" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M6.00753 5.53108L1.9132 9.77976C1.63021 10.0734 1.1726 10.0734 0.892624 9.77976L0.212243 9.07373C-0.0707476 8.78007 -0.0707476 8.30522 0.212243 8.01468L3.1144 5.00312L0.212243 1.99156C-0.0707476 1.69791 -0.0707476 1.22306 0.212243 0.932521L0.889614 0.220244C1.1726 -0.0734145 1.63021 -0.0734145 1.91019 0.220244L6.00452 4.46892C6.29052 4.76257 6.29052 5.23743 6.00753 5.53108ZM11.7878 4.46892L7.69343 0.220244C7.41044 -0.0734145 6.95284 -0.0734145 6.67286 0.220244L5.99247 0.926273C5.70948 1.21993 5.70948 1.69478 5.99247 1.98532L8.89463 4.99688L5.99247 8.00843C5.70948 8.30209 5.70948 8.77694 5.99247 9.06748L6.67286 9.77351C6.95585 10.0672 7.41345 10.0672 7.69343 9.77351L11.7878 5.52484C12.0707 5.23743 12.0707 4.76257 11.7878 4.46892Z"
-                                        fill="#D2D2D2" />
-                                </svg>
-                            </div>
-                        </div>
+
                     </div>
 
                     <div class="form-steps-content-summary">
                         <!-- Step 1 -->
-                        <div class="form-step-content step">
+                        <div class="form-step-content step step_1">
                             <form id="step_1">
                                 <div class="input_container">
                                     <img src="images/business-name.svg">
@@ -115,10 +105,9 @@
                                 <div class="input_container">
                                     <img src="images/email.svg">
                                     <div class=" input_container--sub ">
-                                        <input type="email" placeholder="Email *" name="email">
-                                        <span>Send Code</span>
+                                        <input type="email" placeholder="Email *" id="reg_email" name="email">
+                                        <button type="button" id="send_pin_email">Send Code</button>
                                     </div>
-
                                     <span class="error_component" id="email_error"></span>
                                 </div>
                                 <div class="input_container">
@@ -133,42 +122,65 @@
                                 </div>
                                 <div class="input_container">
                                     <!-- <img src="images/key-outline.svg"> -->
-                                    <input type="text" placeholder="6 Digit Number *" name="country">
-                                    <span class="error_component" id="country_error"></span>
+                                    <input type="text" id='email_pin' placeholder="6 Digit Number *" name="email_pin"
+                                        disabled>
+                                    <span class="error_component" id="email_pin_error"></span>
                                 </div>
-                                <!-- <div class="input_container">
-                                    <img src="images/country.svg">
-                                    <input type="text" placeholder="Country *" name="country">
-                                    <span class="error_component" id="country_error"></span>
-                                </div> -->
-                                <input class="start_free_btn" type="submit" value="START MY FREE 3 month trial here">
+
+                                <input class="start_free_btn" type="submit" disabled
+                                    value="START MY FREE 3 month trial here">
                             </form>
                             <div class="contact-form-item contact-form-submit">
-                                <a href="#" class="form-step-button button button-invalid">
-                                    <span class="text"></span>
-                                    <button class="next_btn text" onclick="next()">NEXT</button>
-                                    <span class="icon arrow-right-icon-white"></span>
-                                </a>
+                                <button type="button" id="next" class="next_btn text form-step-button">NEXT</button>
+                                <span class="icon arrow-right-icon-white"></span>
+                                <!-- </a> -->
                             </div>
                         </div>
                         <!-- END Step 1 -->
 
                         <!-- Step 2 -->
-                        <div class="form-step-content step">
-                            <form>
+                        <div class="form-step-content step step_2">
+                            <form id="step_2">
+
                                 <div class="input_container">
                                     <img src="images/country.svg">
                                     <input type="text" placeholder="Country *" name="country">
                                     <span class="error_component" id="country_error"></span>
                                 </div>
                                 <div class="input_container inputs_cont">
-                                    <input type="text" placeholder="First name">
-                                    <input type="text" placeholder="Last name">
+                                    <input type="text" placeholder="First name" name="firstName">
+                                    <input type="text" placeholder="Last name" name="lastName">
                                 </div>
                                 <div class="input_container">
                                     <img src="images/phone.svg">
-                                    <input type="text" placeholder="Phone Number *">
+                                    <div class="input_container--sub">
+                                        <input type="text" name='phone_number' placeholder="Phone Number *"
+                                            id="reg_phone">
+                                        <button type="button" id="send_pin_phone">Send Code</button>
+                                    </div>
+                                    <span class="error_component" id="phone_number_error"></span>
                                 </div>
+                                <div class="input_container">
+                                    <!-- <img src="images/key-outline.svg"> -->
+                                    <input type="text" id='phone_pin' placeholder="6 Digit Number *" disabled
+                                        name="pin">
+                                    <span class="error_component" id="phone_pin_error"></span>
+                                </div>
+
+                                <div class="contact-form-item contact-form-submit">
+                                    <!-- <a href="" class="form-step-button button"> -->
+                                    <span class="text"></span>
+                                    <button class="text start_btn" type="button" id="reg_btn">
+                                        START MY FREE 3 month trial here</button>
+                                    <!-- </a> -->
+                                </div>
+                            </form>
+                        </div>
+                        <!-- END Step 2 -->
+
+                        <!-- Step 3 -->
+                        <!-- <div class="form-step-content step">
+                            <form>
                                 <div class="input_container">
                                     <img src="images/business-name.svg">
                                     <input type="text" placeholder="Business name *">
@@ -177,20 +189,6 @@
                                     <img src="images/age.svg">
                                     <input type="text" placeholder="Age *">
                                 </div>
-                                <input class="start_free_btn" type="submit" value="START MY FREE 3 month trial here">
-                            </form>
-                            <div class="contact-form-item contact-form-submit">
-                                <a href="#" class="form-step-button button">
-                                    <span class="text"></span>
-                                    <button class="next_btn text">NEXT</button>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- END Step 2 -->
-
-                        <!-- Step 3 -->
-                        <div class="form-step-content step">
-                            <form>
                                 <div class="input_container">
                                     <img src="images/services.svg">
                                     <input type="text" placeholder="Services *">
@@ -219,10 +217,11 @@
                             <div class="contact-form-item contact-form-submit">
                                 <a href="#" class="form-step-button button">
                                     <span class="text"></span>
-                                    <button class="text start_btn">START MY FREE 3 month trial here</button>
+                                    <button class="text start_btn" id="reg_btn">
+                                        START MY FREE 3 month trial here</button>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- END Step 3 -->
                         <div class="step-alert"></div>
 

@@ -18,7 +18,8 @@ else config = require('./config.json').production;
 
 mongoose.connect(config.mongodb_url, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 });
 
 app.use(body_parser.json());
@@ -30,7 +31,7 @@ const Auth = require('./routes/Auth');
 
 app.use('/api', Auth);
 
-const { VerifyToken } = require('./utils/Util.Token');
+const { VerifyToken } = require('./Helpers/Helper.Token');
 
 app.post('/test', VerifyToken, (req, res, next) => {
     res.send('Login');

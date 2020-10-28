@@ -10,63 +10,129 @@ $(document).ready(function () {
 
 });
 
+let valid = {
+    phone: false,
+    email: false
+}
+$(document).on('click', '#send_pin_email, #send_pin_phone', function (e) {
+
+    let part = e.target.id.split('_')[2];
+    console.log(part);
+    $.post('api/auth/send_pin_' + part, { [part]: $('#reg_' + part).val() }).then(res => {
+
+        if (res.err) {
+            $(`#${part}_error`).text(res.err);
+            $(`#${part}_error`).css('display', 'block')
+        } else {
+            $(`#${part}_error`).text(res.err);
+            if (res) {
+                $(`#${part}_error`).text('');
+                $('#send_pin_' + part).prop('disabled', true);
+                $(`#${part}_pin`).removeAttr('disabled');
+            }
+        }
+    })
+})
+
+
+
+function verify(field, stepContentNext) {
+    $.post('api/auth/verify_pin_' + field, {
+        [field]: $('#reg_' + field).val(),
+        pin: $('#' + field + '_pin').val()
+    }).then(res => {
+        if (res.err) {
+            console.log(res.err);
+            $(`#${field}_pin_error`).text(res.err.msg);
+            $(`#${field}_pin_error`).css('display', 'block');
+        } else if (!res.valid) {
+            $(`#${field}_pin_error`).text('Incorrect verification code.');
+            $(`#${field}_pin_error`).css('display', 'block');
+        } else {
+            valid[field] = true;
+            $(`#${field}_pin`).val('');
+            $('.form-step-content').hide();
+            $('.form-step-content').eq(stepContentNext).fadeIn(500);
+            $('.step-item').eq(stepContentNext).addClass('step-item-active');
+        }
+    })
+}
 
 $(document).ready(function () {
-    let last_field = '#username_error';
-    $(document).on('click', '.form-step-button', function (e) {
-        $(last_field).text('');
-        var valid = false;
-        var alertMessage = $('.step-alert');
-        var _this = $(this);
-        var _thisClass = _this.hasClass('button-invalid');
-        var stepContent = _this.closest('.form-step-content').index();
-        var stepContentNext = _this.closest('.form-step-content').index() + 1;
+    let data = {
+        username: "",
+        email: "",
+        password: "",
+        confirm_password: "",
+        email_pin: "",
+        country: "",
+        firstName: "",
+        lastName: "",
+        phone_number: "",
+        phone_pin: ""
+    };
 
-        let data = {};
+    let last_field = '#username_error';
+    let reg = false;
+
+    $(document).on('click', '#signin', e => {
+        $.post('api/auth/sign_in', {
+            email: $('#log_email').val(),
+            password: $('#log_password').val()
+        }).then(res => {
+            if (res.err) $('#signin_error').text(res.err);
+        })
+    })
+
+
+    $(document).on('click', '#next, #reg_btn', function (e) {
+
+        $(last_field).text('');
+
+        let _this = $(this);
+        let stepContent = _this.closest('.form-step-content').index();
+        let stepContentNext = _this.closest('.form-step-content').index() + 1;
+
+
+
+        // $('.form-step-content').hide();
+        // $('.form-step-content').eq(stepContentNext).fadeIn(500);
+        // $('.step-item').eq(stepContentNext).addClass('step-item-active');
+
         $(".form-step-content").eq(stepContent).find('input, select').each(function () {
             if ($(this).attr('name')) data[this.name] = $(this).val();
         });
 
 
 
-        $.ajax({
-            method: 'POST',
-            data: data,
-            url: '/api/auth/sign_up',
-            success: function (res) {
-                if (res.err) {
-                    last_field = `#${res.err.param}_error`;
 
-                    $(`#${res.err.param}_error`).text(res.err.msg);
-                    $(`#${res.err.param}_error`).css('display', 'block');
-                }
+
+        if ($('#email_pin').val() !== '' && !valid.email) verify('email', stepContentNext); else
+            if ($('#phone_pin').val() !== '' && !valid.phone) verify('phone', stepContentNext); else {
+                $.ajax({
+                    method: 'POST',
+                    data: data,
+                    url: '/api/auth/sign_up',
+                    success: function (res) {
+                        if (res.err) {
+
+                            last_field = `#${res.err.param}_error`;
+                            $(`#${res.err.param}_error`).text(res.err.msg);
+                            $(`#${res.err.param}_error`).css('display', 'block');
+
+                        } else {
+                            $('.form-step-content').hide();
+                            $('.form-step-content').eq(stepContentNext).fadeIn(500);
+                        }
+                    }
+                })
             }
-        })
-        // Set boolean true if all not is empty
-        // if (valid == true) {
-        //     _this.addClass('button-invalid');
-        //     _thisClass = true;
-        // }
-        // else {
-        //     _this.removeClass('button-invalid');
-        //     _thisClass = false;
-        // }
 
-        // // Alert message / Hide and show the content
-        // if (_thisClass == true) {
-        //     alertMessage.html('Please check all fields');
-        //     _this.addClass('button-bouncing');
-        // }
-        // else {
-        //     alertMessage.html('');
 
-        //     $('.form-step-content').hide();
-        //     $('.form-step-content').eq(stepContentNext).fadeIn(500);
 
-        //     //stepBarNext
-        //     $('.step-item').eq(stepContentNext).addClass('step-item-active');
-        // }
+
     });
+
 
     // Step bar
     $(document).on('click', '.step-item-active', function () {
@@ -74,11 +140,7 @@ $(document).ready(function () {
         var index = _this.index();
         var hideNext = index + 1;
 
-        // Set content
-        $('.form-step-content').hide();
-        $('.form-step-content').eq(index).fadeIn(500);
 
-        // Set sidebar
         $(_this).nextAll().removeClass('step-item-active');
 
     });
@@ -114,10 +176,3 @@ $("#imageUpload2").change(function () {
     readURL2(this);
 });
 
-
-
-function next() {
-    $('#step_1').submit(function (e) {
-        console.log(e.target)
-    })
-}

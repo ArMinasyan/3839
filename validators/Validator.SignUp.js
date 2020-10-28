@@ -10,21 +10,28 @@ module.exports = [
         .isLength({ min: 8 }).withMessage('Please enter at least 8 characters.'),
 
     body('confirm_password').trim().notEmpty().withMessage('Confirm pasword field is required.')
-        .custom((value, { req }) => { if (value !== req.body.password) throw new Error('Password confirmation does not match password.'); else return true }),
+        .custom((value, { req }) => {
+            if (value !== req.body.password) throw new Error('Password confirmation does not match password.');
+            else return true
+        }),
 
-    body('country').trim().notEmpty().withMessage('Country field is required.'),
-
-    body('pin').trim().notEmpty().withMessage('Pin field is required')
+    body('email_pin').trim().notEmpty().withMessage('Pin field is required')
         .isNumeric().withMessage('Please enter only digits.')
         .isLength({ min: 6, max: 6 }).withMessage('Please enter only 6 digits.'),
+
+    body('country').trim().notEmpty().withMessage('Country field is required.'),
 
     body('phone_number').trim().notEmpty().withMessage('Phone number field is required.')
         .isMobilePhone('any').withMessage('Enter correct phone number.'),
 
-    body('bussines_name').trim().notEmpty().withMessage('Bussines name field is required.'),
+    body('phone_pin').trim().notEmpty().withMessage('Pin field is required')
+        .isNumeric().withMessage('Please enter only digits.')
+        .isLength({ min: 6, max: 6 }).withMessage('Please enter only 6 digits.'),
 
-    body('age').trim().notEmpty().withMessage('Age field is required.')
-        .isNumeric().withMessage('Please enter only digits.'),
+    // body('bussines_name').trim().notEmpty().withMessage('Bussines name field is required.'),
 
-    body('services').trim().notEmpty().withMessage('Services field is required.')
+    // body('age').trim().notEmpty().withMessage('Age field is required.')
+    //     .isNumeric().withMessage('Please enter only digits.'),
+
+    // body('services').trim().notEmpty().withMessage('Services field is required.')
 ]

@@ -21,15 +21,24 @@
     <div class="startPage_banner">
         <div class="startPage_body">
             <div class="logo"><a href="#"><img src="images/logo.png"></a></div>
-            <h3>How do you feel today?</h3>
-            <div class="search_div">
-                <form>
-                    <input class="search_input" name="Search" type="search" />
-                </form>
+            <div class="loginContainer form-step-content">
+                <div class="input_container ">
+                    <img src="images/business-name.svg">
+                    <input type="text" placeholder="Email" id="log_email">
+                </div>
+                <div class="input_container">
+                    <img src="images/password.svg">
+                    <input type="password" placeholder="Password" id="log)password">
+                </div>
+                <span class="signin_error" id="signin_error"></span>
+                <div class="input_container">
+                    <button type="button" class="next_btn text" id="signin">Sign In</button>
+                </div>
             </div>
+
             <div class="menu_btns">
-                <a class="client_btn" href="/sign_up">You're a client?</a>
-                <a class="therapist_btn" href="">You're a therapist?</a>
+                <a class="client_btn" href="">You're a client?</a>
+                <a class="therapist_btn" href="sign_up">You're a therapist?</a>
             </div>
         </div>
     </div>
