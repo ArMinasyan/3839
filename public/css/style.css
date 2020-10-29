@@ -132,9 +132,9 @@ input:focus, textarea:focus, select:focus {
 
 /* Top Navigation Bar */
 
-.nav_bar {
+/* .nav_bar {
 
-}
+} */
 
 .nav_bar > .container {
     max-width: 1270px;
@@ -353,7 +353,6 @@ input:focus, textarea:focus, select:focus {
 
     .nav-bar {
         display: inline-block;
-        float: right;
         margin-top: 3px;
         background: transparent;
         border: none;
@@ -881,8 +880,8 @@ footer .footer_banner {
     width: auto;
 }
 
-.h_section2_banner {
-}
+/* .h_section2_banner {
+} */
 
 .h_section2, .h_section3, .h_section4, .h_section5, .h_section6, .h_section7, .h_section8, .h_section9, .h_section10, .h_section11 {
     max-width: 1270px;
@@ -1422,9 +1421,9 @@ p.price_bottomText {
         text-align: center;
     }
 
-    .h_section4_banner, .h_section6_banner, .h_section8_banner {
+    /* .h_section4_banner, .h_section6_banner, .h_section8_banner {
 
-    }
+    } */
 
     .h_section2 .right_video {
         margin-left: 0;
