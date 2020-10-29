@@ -66,6 +66,6 @@ app.get('/user', (req, res, next) => {
     //if (VerifyToken(req, res)) 
 })
 
-app.listen(8080 || process.env.PORT, () => {
+app.listen(process.env.PORT || 8080, () => {
     console.log('Start');
 })
