@@ -21,7 +21,7 @@ module.exports = [
 
     body('country').trim().notEmpty().withMessage('Country field is required.'),
 
-    body('phone_number').trim().notEmpty().withMessage('Phone number field is required.')
+    body('phone').trim().notEmpty().withMessage('Phone number field is required.')
         .isMobilePhone('any').withMessage('Enter correct phone number.'),
 
     body('phone_pin').trim().notEmpty().withMessage('Pin field is required')

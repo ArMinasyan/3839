@@ -21,10 +21,10 @@ $(document).on('click', '#send_pin_email, #send_pin_phone', function (e) {
     $.post('api/auth/send_pin_' + part, { [part]: $('#reg_' + part).val() }).then(res => {
 
         if (res.err) {
-            $(`#${part}_error`).text(res.err);
+            $(`#${part}_error`).text(res.err.msg);
             $(`#${part}_error`).css('display', 'block')
         } else {
-            $(`#${part}_error`).text(res.err);
+            //$(`#${part}_error`).text('');
             if (res) {
                 $(`#${part}_error`).text('');
                 $('#send_pin_' + part).prop('disabled', true);
@@ -34,29 +34,62 @@ $(document).on('click', '#send_pin_email, #send_pin_phone', function (e) {
     })
 })
 
-
-
-function verify(field, stepContentNext) {
-    $.post('api/auth/verify_pin_' + field, {
-        [field]: $('#reg_' + field).val(),
-        pin: $('#' + field + '_pin').val()
+function emailVerify(stepContentNext) {
+    $.post('api/auth/verify_pin_email', {
+        email: $('#reg_email').val(),
+        pin: $('#email_pin').val()
     }).then(res => {
         if (res.err) {
             console.log(res.err);
-            $(`#${field}_pin_error`).text(res.err.msg);
-            $(`#${field}_pin_error`).css('display', 'block');
+            $(`#email_pin_error`).text(res.err.msg);
+            $(`#email_pin_error`).css('display', 'block');
         } else if (!res.valid) {
-            $(`#${field}_pin_error`).text('Incorrect verification code.');
-            $(`#${field}_pin_error`).css('display', 'block');
+            $(`#email_pin_error`).text('Incorrect verification code.');
+            $(`#email_pin_error`).css('display', 'block');
         } else {
-            valid[field] = true;
-            $(`#${field}_pin`).val('');
+            $(`#email_pin`).val('');
             $('.form-step-content').hide();
             $('.form-step-content').eq(stepContentNext).fadeIn(500);
             $('.step-item').eq(stepContentNext).addClass('step-item-active');
         }
     })
 }
+
+function phoneVerify(data) {
+    $.post('api/auth/verify_pin_phone', {
+        phone: $('#reg_phone').val(),
+        pin: $('#phone_pin').val()
+    }).then(res => {
+        if (res.err) {
+            console.log(res.err);
+            $(`#phone_pin_error`).text(res.err.msg);
+            $(`#phone_pin_error`).css('display', 'block');
+        } else if (!res.valid) {
+            $(`#phone_pin_error`).text('Incorrect verification code.');
+            $(`#phone_pin_error`).css('display', 'block');
+        } else {
+            console.log('Verifyed');
+            $.ajax({
+                method: 'POST',
+                data: data,
+                url: '/api/auth/sign_up',
+                success: function (res) {
+                    if (res.err) {
+                        last_field = `#${res.err.param}_error`;
+                        $(`#${res.err.param}_error`).text(res.err.msg);
+                        $(`#${res.err.param}_error`).css('display', 'block');
+
+                    } else {
+                        window.location.href = '/user';
+                    }
+                }
+            })
+        }
+    })
+}
+
+
+
 
 $(document).ready(function () {
     let data = {
@@ -68,7 +101,7 @@ $(document).ready(function () {
         country: "",
         firstName: "",
         lastName: "",
-        phone_number: "",
+        phone: "",
         phone_pin: ""
     };
 
@@ -107,8 +140,8 @@ $(document).ready(function () {
 
 
 
-        if ($('#email_pin').val() !== '' && !valid.email) verify('email', stepContentNext); else
-            if ($('#phone_pin').val() !== '' && !valid.phone) verify('phone', stepContentNext); else {
+        if ($('#email_pin').val() !== '' && !valid.email) emailVerify(stepContentNext); else
+            if ($('#phone_pin').val() !== '' && !valid.phone) phoneVerify(data); else {
                 $.ajax({
                     method: 'POST',
                     data: data,

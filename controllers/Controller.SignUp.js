@@ -5,16 +5,13 @@ const { validationResult } = require('express-validator');
 const { CreateHash } = require('../Helpers/Helper.Hash');
 const { CreateToken } = require('../Helpers/Helper.Token');
 
-const SendEmail = require('../Helpers/Helper.Email');
+
 module.exports = (req, res, next) => {
+    console.log(req.body);
     const valid = validationResult(req);
     if (!valid.isEmpty()) res.json({ err: valid.array()[0] }); else {
-
         const { email, password, country, phone_number, bussines_name, age, services, firstName, lastName } = req.body;
-        // User.findOne({ email: email }).then(result => {
-        //  if (result === null) {
         console.log('Registration');
-
         const user = new User({
             email: email,
             password: CreateHash(password),
@@ -32,11 +29,14 @@ module.exports = (req, res, next) => {
                     services: services
                 })
                 userPageData.save(err => {
-                    if (!err) res.status(200).json({ token: CreateToken({ id: result._id, email: result.email, date: new Date.now() }) })
+                    if (!err) {
+                        res.cookie('token', CreateToken({ id: user._id, email: user.email, date: Date.now() }), {
+                            httpOnly: true
+                        });
+                        res.status(200).end();
+                    }
                 })
             }
-            //})
-            // } else res.send('Email address already exist.')
         })
     }
 }

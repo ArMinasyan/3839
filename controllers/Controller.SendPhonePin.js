@@ -6,10 +6,10 @@ const { validationResult } = require('express-validator');
 
 module.exports.SendPhonePin = async (req, res, next) => {
     const valid = validationResult(req);
-    if (!valid.isEmpty()) res.json({ err: valid.array()[0].msg }); else {
+    if (!valid.isEmpty()) res.json({ err: valid.array()[0] }); else {
         const code_state = await SendPinCode(req.body.phone);
         res.status(200).json({
-            valid: !code_state.valid,
+            valid: code_state.valid,
             status: code_state.status
         })
     }

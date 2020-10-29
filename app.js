@@ -45,6 +45,11 @@ app.get('/sign_up', (req, res, next) => {
     res.sendFile(__dirname + '/views/sign-like-therapist.html');
 })
 
+
+app.get('/user', VerifyToken, (req, res, next) => {
+    res.sendFile(__dirname + '/views/account-page.html');
+})
+
 HttpServer.listen(8080, () => {
     console.log('Start');
 })
