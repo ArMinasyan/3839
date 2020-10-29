@@ -18,7 +18,7 @@ if (process.env.NODE_ENV) mongodb_url = 'mongodb://localhost:27017/3839';
 else mongodb_url = process.env.MONGODB_URL;
 
 
-mongoose.connect(config.mongodb_url, {
+mongoose.connect(mongodb_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
