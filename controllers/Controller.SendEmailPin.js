@@ -1,4 +1,4 @@
-const send = require('../Helpers/Helper.Email');
+const send = require('../helpers/Helper.Email');
 const SecurePin = require('crypto-random-string');
 const EmailConfirm = require('../models/EmailConfirm');
 const { validationResult } = require('express-validator');
