@@ -8,7 +8,7 @@ require('dotenv').config();
 
 const app = express();
 
-const HttpServer = createServer(app);
+//const HttpServer = createServer(app);
 
 app.use(express.static(__dirname + '/public'));
 
@@ -51,6 +51,6 @@ app.get('/user', (req, res, next) => {
     //if (VerifyToken(req, res)) 
 })
 
-HttpServer.listen(8080 || process.env.PORT, () => {
+app.listen(8080 || process.env.PORT, () => {
     console.log('Start');
 })
