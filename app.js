@@ -33,7 +33,7 @@ const Auth = require('./routes/Auth');
 
 app.use('/api', Auth);
 
-const { VerifyToken } = require('./Helpers/Helper.Token');
+const { VerifyToken } = require('./helpers/Helper.Token');
 
 app.post('/test', VerifyToken, (req, res, next) => {
     res.send('Login');
