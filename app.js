@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const { createServer } = require('http');
 const body_parser = require('body-parser');
 const cookie_parser = require('cookie-parser');
+const jwt = require('express-jwt');
+
 require('dotenv').config();
 
 const app = express();
@@ -11,9 +13,9 @@ const HttpServer = createServer(app);
 
 app.use(express.static(__dirname + '/public'));
 
-let config = null;
-if (process.env.NODE_ENV) config = require('./config.json').development;
-else config = require('./config.json').production;
+let mongodb_url;
+if (process.env.NODE_ENV) mongodb_url = 'mongodb://localhost:27017/3839';
+else mongodb_url = process.env.MONGODB_URL;
 
 
 mongoose.connect(config.mongodb_url, {
@@ -38,7 +40,7 @@ app.post('/test', VerifyToken, (req, res, next) => {
 })
 
 app.get('/', (req, res, next) => {
-    res.sendFile(__dirname + '/views/index.html');
+    if (VerifyToken(req, res)) res.status(200).redirect('/user');
 })
 
 app.get('/sign_up', (req, res, next) => {
@@ -46,10 +48,10 @@ app.get('/sign_up', (req, res, next) => {
 })
 
 
-app.get('/user', VerifyToken, (req, res, next) => {
-    res.sendFile(__dirname + '/views/account-page.html');
+app.get('/user', jwt({ secret: process.env.JWT_KEY, }), (req, res, next) => {
+    //if (VerifyToken(req, res)) res.sendFile(__dirname + '/views/account-page.html');
 })
 
-HttpServer.listen(8080, () => {
+HttpServer.listen(8080 || process.env.PORT, () => {
     console.log('Start');
 })

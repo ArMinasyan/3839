@@ -10,7 +10,9 @@ module.exports = async (req, res, next) => {
             if (err) throw new Error('Try Again');
             if (doc) {
                 if (VerifyHash(password, doc.password)) {
-                    res.send(CreateToken({ _id: doc._id, time: Date.now() }));
+                    // res.send(CreateToken({ _id: doc._id, time: Date.now() }));
+                    res.cookie('token', CreateToken({ email: doc.email, id: doc._id }));
+                    res.redirect('/user');
                 } else res.status(501).send('Incorrect email and/or password')
             } else res.status(501).send('Incorrect email and/or password')
         })

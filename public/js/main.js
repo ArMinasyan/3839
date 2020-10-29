@@ -88,9 +88,6 @@ function phoneVerify(data) {
     })
 }
 
-
-
-
 $(document).ready(function () {
     let data = {
         username: "",
