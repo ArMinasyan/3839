@@ -14,8 +14,9 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 
 let mongodb_url;
-if (process.env.NODE_ENV) mongodb_url = process.env.MONGODB_URL;
-else mongodb_url = 'mongodb://localhost:27017/3839';
+if (process.env.NODE_ENV) mongodb_url = 'mongodb://localhost:27017/3839';
+else mongodb_url = process.env.MONGODB_URL;
+
 
 mongoose.connect(mongodb_url, {
     useNewUrlParser: true,
@@ -28,9 +29,9 @@ app.use(body_parser.urlencoded({ extended: true }));
 app.use(cookie_parser());
 
 const Auth = require('./routes/Auth');
+const User = require('./routes/User');
 
-
-app.use('/api', Auth);
+app.use('/api', [Auth, User]);
 
 const cors = require('cors');
 
@@ -47,13 +48,14 @@ app.post('/test', VerifyToken, (req, res, next) => {
 })
 
 app.get('/', (req, res, next) => {
-    res.sendFile(__dirname + '/views/index.html');
-    console.log('lllllllllll')
-
+    if (req.cookies && req.cookies.token) res.redirect('/user'); else
+        res.sendFile(__dirname + '/views/index.html');
 })
 
+const { createHmac } = require('crypto');
+
 app.get('/test', (req, res, next) => {
-    res.send(true);
+    res.send(createHmac('SHA256', '7fd04df92f63').update('12345678').digest('hex'))
 })
 
 app.get('/sign_up', (req, res, next) => {
@@ -61,7 +63,7 @@ app.get('/sign_up', (req, res, next) => {
 })
 
 
-app.get('/user', (req, res, next) => {
+app.get('/user', VerifyToken, (req, res, next) => {
     res.sendFile(__dirname + '/views/account-page.html');
     //if (VerifyToken(req, res)) 
 })

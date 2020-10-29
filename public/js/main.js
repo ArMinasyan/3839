@@ -17,7 +17,7 @@ let valid = {
 $(document).on('click', '#send_pin_email, #send_pin_phone', function (e) {
 
     let part = e.target.id.split('_')[2];
-    console.log(part);
+
     $.post('api/auth/send_pin_' + part, { [part]: $('#reg_' + part).val() }).then(res => {
 
         if (res.err) {
@@ -40,7 +40,6 @@ function emailVerify(stepContentNext) {
         pin: $('#email_pin').val()
     }).then(res => {
         if (res.err) {
-            console.log(res.err);
             $(`#email_pin_error`).text(res.err.msg);
             $(`#email_pin_error`).css('display', 'block');
         } else if (!res.valid) {
@@ -61,14 +60,12 @@ function phoneVerify(data) {
         pin: $('#phone_pin').val()
     }).then(res => {
         if (res.err) {
-            console.log(res.err);
             $(`#phone_pin_error`).text(res.err.msg);
             $(`#phone_pin_error`).css('display', 'block');
         } else if (!res.valid) {
             $(`#phone_pin_error`).text('Incorrect verification code.');
             $(`#phone_pin_error`).css('display', 'block');
         } else {
-            console.log('Verifyed');
             $.ajax({
                 method: 'POST',
                 data: data,
@@ -87,6 +84,7 @@ function phoneVerify(data) {
         }
     })
 }
+
 
 $(document).ready(function () {
     let data = {
@@ -110,6 +108,7 @@ $(document).ready(function () {
             email: $('#log_email').val(),
             password: $('#log_password').val()
         }).then(res => {
+            if (res.login) window.location.href = '/user';
             if (res.err) $('#signin_error').text(res.err);
         })
     })

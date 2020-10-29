@@ -6,6 +6,7 @@ const CreateHash = pswd => createHmac('SHA256', '7fd04df92f63').update(pswd).dig
 
 const VerifyHash = (pswd1, pswd2) => {
     const hash = createHmac('SHA256', '7fd04df92f63').update(pswd1).digest('hex');
+    console.log(hash);
     return hash === pswd2 ? true : false;
 }
 

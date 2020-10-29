@@ -1,9 +1,9 @@
 const { Router } = require('express');
 
-const SignUp = require('../controllers/Controller.SignUp');
-const SignIn = require('../controllers/Controller.SignIn');
-const { SendEmailPin, VerifyEmailPin } = require('../controllers/Controller.SendEmailPin');
-const { SendPhonePin, VerifyPhonePin } = require('../controllers/Controller.SendPhonePin');
+const SignUp = require('../controllers/Auth/Controller.SignUp');
+const SignIn = require('../controllers/Auth/Controller.SignIn');
+const { SendEmailPin, VerifyEmailPin } = require('../controllers/Auth/Controller.SendEmailPin');
+const { SendPhonePin, VerifyPhonePin } = require('../controllers/Auth/Controller.SendPhonePin');
 
 const Validator_SignUp = require('../validators/Validator.SignUp');
 const Validator_SignIn = require('../validators/Validator.SignIn');

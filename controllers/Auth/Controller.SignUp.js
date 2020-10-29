@@ -1,17 +1,18 @@
-const User = require('../models/User');
-const UserPageData = require('../models/UserPageData');
+const User = require('../../models/User');
+const UserPageData = require('../../models/UserPageData');
 
 const { validationResult } = require('express-validator');
-const { CreateHash } = require('../helpers/Helper.Hash');
-const { CreateToken } = require('../helpers/Helper.Token');
+const { CreateHash } = require('../../helpers/Helper.Hash');
+const { CreateToken } = require('../../helpers/Helper.Token');
 
 
 module.exports = (req, res, next) => {
-    console.log(req.body);
     const valid = validationResult(req);
     if (!valid.isEmpty()) res.json({ err: valid.array()[0] }); else {
+        console.log(req.body);
+
         const { email, password, country, phone, bussines_name, age, services, firstName, lastName } = req.body;
-        console.log('Registration');
+
         const user = new User({
             email: email,
             password: CreateHash(password),
@@ -39,4 +40,6 @@ module.exports = (req, res, next) => {
             }
         })
     }
+
+
 }

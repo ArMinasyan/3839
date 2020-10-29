@@ -1,8 +1,8 @@
-const send = require('../helpers/Helper.Email');
+const send = require('../../helpers/Helper.Email');
 const SecurePin = require('crypto-random-string');
-const EmailConfirm = require('../models/EmailConfirm');
+const EmailConfirm = require('../../models/EmailConfirm');
 const { validationResult } = require('express-validator');
-const User = require('../models/User');
+const User = require('../../models/User');
 
 module.exports.SendEmailPin = (req, res, next) => {
     const valid = validationResult(req);
@@ -24,8 +24,6 @@ module.exports.SendEmailPin = (req, res, next) => {
 }
 
 module.exports.VerifyEmailPin = async (req, res, next) => {
-
-    console.log(req.body);
     const valid = validationResult(req);
     if (!valid.isEmpty()) res.json({ err: valid.array()[0] }); else {
         EmailConfirm.find({ email: req.body.email }).then(docs => {
