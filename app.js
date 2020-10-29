@@ -48,6 +48,8 @@ app.post('/test', VerifyToken, (req, res, next) => {
 
 app.get('/', (req, res, next) => {
     res.sendFile(__dirname + '/views/index.html');
+    console.log('lllllllllll')
+
 })
 
 app.get('/sign_up', (req, res, next) => {
