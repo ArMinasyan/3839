@@ -13,9 +13,8 @@ const HttpServer = createServer(app);
 app.use(express.static(__dirname + '/public'));
 
 let mongodb_url;
-if (process.env.NODE_ENV) mongodb_url = 'mongodb://localhost:27017/3839';
-else mongodb_url = process.env.MONGODB_URL;
-
+if (process.env.NODE_ENV) mongodb_url = process.env.MONGODB_URL;
+else mongodb_url = 'mongodb://localhost:27017/3839';
 
 mongoose.connect(mongodb_url, {
     useNewUrlParser: true,
