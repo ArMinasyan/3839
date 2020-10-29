@@ -38,7 +38,7 @@ app.post('/test', VerifyToken, (req, res, next) => {
 })
 
 app.get('/', (req, res, next) => {
-    if (VerifyToken(req, res)) res.status(200).redirect('/user');
+    res.sendFile(__dirname + '/views/index.html');
 })
 
 app.get('/sign_up', (req, res, next) => {
