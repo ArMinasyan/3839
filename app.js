@@ -52,6 +52,10 @@ app.get('/', (req, res, next) => {
 
 })
 
+app.get('/test', (req, res, next) => {
+    res.send(true);
+})
+
 app.get('/sign_up', (req, res, next) => {
     res.sendFile(__dirname + '/views/sign-like-therapist.html');
 })
