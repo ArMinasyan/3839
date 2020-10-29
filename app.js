@@ -32,6 +32,14 @@ const Auth = require('./routes/Auth');
 
 app.use('/api', Auth);
 
+const cors = require('cors');
+
+cors({
+    origin: [
+        'https://test-3839.herokuapp.com/'
+    ]
+});
+
 const { VerifyToken } = require('./helpers/Helper.Token');
 
 app.post('/test', VerifyToken, (req, res, next) => {
