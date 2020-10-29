@@ -14,8 +14,8 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 
 let mongodb_url;
-if (process.env.NODE_ENV) mongodb_url = 'mongodb://localhost:27017/3839';
-else mongodb_url = process.env.MONGODB_URL;
+if (process.env.NODE_ENV === undefined) mongodb_url = process.env.MONGODB_URL;
+else mongodb_url = 'mongodb://localhost:27017/3839';
 
 console.log(mongodb_url);
 
