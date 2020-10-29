@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const { createServer } = require('http');
 const body_parser = require('body-parser');
 const cookie_parser = require('cookie-parser');
-const jwt = require('express-jwt');
 
 require('dotenv').config();
 
@@ -48,8 +47,9 @@ app.get('/sign_up', (req, res, next) => {
 })
 
 
-app.get('/user', jwt({ secret: process.env.JWT_KEY, }), (req, res, next) => {
-    //if (VerifyToken(req, res)) res.sendFile(__dirname + '/views/account-page.html');
+app.get('/user', (req, res, next) => {
+    res.sendFile(__dirname + '/views/account-page.html');
+    //if (VerifyToken(req, res)) 
 })
 
 HttpServer.listen(8080 || process.env.PORT, () => {
