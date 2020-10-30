@@ -11,18 +11,25 @@ const app = express();
 //const HttpServer = createServer(app);
 
 app.use(express.static(__dirname + '/public'));
+app.use('/profileImages', express.static(__dirname + '/profileImages'));
+app.use('/logoImages', express.static(__dirname + '/logoImages'));
 app.set('views', __dirname + '/views');
 
 let mongodb_url;
 if (process.env.NODE_ENV.trim() === 'development') mongodb_url = 'mongodb://localhost:27017/3839';
 else mongodb_url = process.env.MONGODB_URL;
 
-console.log(mongodb_url);
+
 
 mongoose.connect(mongodb_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useCreateIndex: true
+}).then(con => {
+    console.log('Database connected...');
+}).catch(err => {
+    console.log(err);
 });
 
 app.use(body_parser.json());
@@ -66,7 +73,6 @@ app.get('/sign_up', (req, res, next) => {
 
 app.get('/user', VerifyToken, (req, res, next) => {
     res.sendFile(__dirname + '/views/account-page.html');
-    //if (VerifyToken(req, res)) 
 })
 
 app.listen(process.env.PORT || 8080, () => {

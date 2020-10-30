@@ -10,7 +10,8 @@ const VerifyToken = (req, res, next) => {
             function (err, dec) {
                 if (err || dec === undefined) res.status(401).redirect('/');
                 else {
-                    res.locals = dec;
+                    // res.locals = dec;
+                    req.user = dec;
                     next();
                 }
             })

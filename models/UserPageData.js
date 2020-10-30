@@ -19,7 +19,14 @@ module.exports = model('UserPageData', new Schema({
     age_speciality: Number,
     //
     socialLinks: [],
-    imgPath: String,
+    profileImgPath: {
+        type: String,
+        default: ''
+    },
+    logoImgPath: {
+        type: String,
+        default: ''
+    },
     description: String,
     invoices: [{}]
 }));

@@ -2234,9 +2234,21 @@ color: red;
 
 }
 
+.logoAvatar{
+    border: 1px solid  #028383;
+}
+
+.logoImg{
+    border-radius: 50%;
+    height: 100%;
+    
+}
+
+
+
 .avatar_container .avatar-upload .avatar-preview {
-    width: 92px;
-    height: 92px;
+    width: 100px;
+    height: 100px;
     position: relative;
     border-radius: 50%;
 }
@@ -2246,6 +2258,7 @@ color: red;
     height: 262px;
     position: relative;
     border-radius: 7px;
+    border: 1px solid #028383;
 }
 
 .avatar_container .avatar-upload .avatar-preview > div {
@@ -2255,6 +2268,7 @@ color: red;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+
 }
 
 .avatar_container2 .avatar-upload .avatar-preview > div {
