@@ -2,7 +2,11 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const { nextTick } = require('process');
 
+
+
 const CreateToken = data => jwt.sign(data, process.env.JWT_KEY, { algorithm: 'HS384' });
+
+
 
 const VerifyToken = (req, res, next) => {
     if (req.cookies && req.cookies.token) {
@@ -10,7 +14,6 @@ const VerifyToken = (req, res, next) => {
             function (err, dec) {
                 if (err || dec === undefined) res.status(401).redirect('/');
                 else {
-                    // res.locals = dec;
                     req.user = dec;
                     next();
                 }

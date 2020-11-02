@@ -16,6 +16,7 @@ $(document).on('change', '#imageUpload2', e => {
     })
 })
 
+
 $(document).on('change', '#imageUpload', e => {
     $(this).val('');
     const form = new FormData();
@@ -35,6 +36,8 @@ $(document).on('change', '#imageUpload', e => {
 })
 
 $(document).ready(function () {
+    //$('#calendar').datapicker();
+
     $.get('/api/User/MainData').then(response => {
         $('#name_set').text(response.data.firstName + ' ' + response.data.lastName);
         $('#country_set').text(response.data.country);

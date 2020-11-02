@@ -1,7 +1,6 @@
-const SecurePin = require('secure-pin');
+
 const { SendPinCode, VerifyPinCode } = require('../../helpers/Helper.Phone');
-const charSet = new SecurePin.CharSet();
-charSet.addNumeric().randomize();
+
 const { validationResult } = require('express-validator');
 
 module.exports.SendPhonePin = async (req, res, next) => {
@@ -17,7 +16,7 @@ module.exports.SendPhonePin = async (req, res, next) => {
 
 
 module.exports.VerifyPhonePin = async (req, res, next) => {
-    
+
     const valid = validationResult(req);
     if (!valid.isEmpty()) res.json({ err: valid.array()[0] }); else {
         const code_state = await VerifyPinCode(req.body.phone, req.body.pin);

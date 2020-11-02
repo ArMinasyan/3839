@@ -15,6 +15,8 @@
     <!-- Main CSS -->
     <link href="css/style.css" rel="stylesheet">
 
+
+
 </head>
 
 <body>
@@ -171,7 +173,7 @@
                                 </svg>
                             </a>
                         </li>
-                        <li class="added_link">
+                        <!-- <li class="added_link">
                             <button class="add_link_btn checked_btn"><img src="images/check.svg"></button>
                             <a href="">
                                 <svg width="25" height="20" viewBox="0 0 25 20" fill="none"
@@ -181,7 +183,7 @@
                                         fill="white" />
                                 </svg>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="added_link">
                             <button class="add_link_btn checked_btn"><img src="images/check.svg"></button>
                             <a href="">
@@ -235,6 +237,8 @@
                 </div>
                 <div class="accounts_sect4_item sect4_item_big">
                     <h3>iCalendar</h3>
+                    <div id="calendar"></div>
+
                 </div>
                 <div class="accounts_sect4_item video_call_item">
                     <button class="video_call_btn"><img src="images/video-call.svg"></button>
@@ -443,9 +447,27 @@
     </footer>
 
     <script src="lib/js/jquery-3.3.1.min.js"></script>
+
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <!-- Main JS -->
     <script src="js/User.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- <script src="lib/js/jquery-ui.js"></script> -->
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(document).on('ready', function () {
+            $("#calendar").datepicker({
+                dateFormat: "dd/mm/yy",
+                onSelect: function (date) {
+                    console.log(date)
+                }
+            });
+        })
+
+
+    </script>
 </body>
 
 </html>

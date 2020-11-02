@@ -4,16 +4,22 @@ const { createServer } = require('http');
 const body_parser = require('body-parser');
 const cookie_parser = require('cookie-parser');
 
-require('dotenv').config();
 
+require('dotenv').config();
 const app = express();
 
-//const HttpServer = createServer(app);
+const HttpServer = createServer(app);
 
 app.use(express.static(__dirname + '/public'));
 app.use('/profileImages', express.static(__dirname + '/profileImages'));
 app.use('/logoImages', express.static(__dirname + '/logoImages'));
 app.set('views', __dirname + '/views');
+
+
+
+
+
+
 
 let mongodb_url;
 if (process.env.NODE_ENV.trim() === 'development') mongodb_url = 'mongodb://localhost:27017/3839';
@@ -32,9 +38,13 @@ mongoose.connect(mongodb_url, {
     console.log(err);
 });
 
+
+
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: true }));
 app.use(cookie_parser());
+
+
 
 const Auth = require('./routes/Auth');
 const User = require('./routes/User');
@@ -55,6 +65,8 @@ app.post('/test', VerifyToken, (req, res, next) => {
     res.send('Login');
 })
 
+
+
 app.get('/', (req, res, next) => {
     if (req.cookies && req.cookies.token) res.redirect('/user'); else
         res.sendFile(__dirname + '/views/index.html');
@@ -63,7 +75,7 @@ app.get('/', (req, res, next) => {
 const { createHmac } = require('crypto');
 
 app.get('/test', (req, res, next) => {
-    res.send(createHmac('SHA256', '7fd04df92f63').update('12345678').digest('hex'))
+    res.send(createHmac('SHA256', '7fd04df92f63').update('test.112025@gmail.com').digest('hex'))
 })
 
 app.get('/sign_up', (req, res, next) => {
@@ -75,6 +87,6 @@ app.get('/user', VerifyToken, (req, res, next) => {
     res.sendFile(__dirname + '/views/account-page.html');
 })
 
-app.listen(process.env.PORT || 8080, () => {
+HttpServer.listen(process.env.PORT || 8080, () => {
     console.log('Start');
 })

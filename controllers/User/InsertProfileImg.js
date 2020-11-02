@@ -1,3 +1,4 @@
+const upload = require('../../helpers/Helper.Upload');
 
 module.exports.InsertProfileImg = (req, res, next) => {
     // upload.single('profile_img');

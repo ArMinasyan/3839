@@ -18,7 +18,10 @@ module.exports = model('UserPageData', new Schema({
     session_format: String,
     age_speciality: Number,
     //
-    socialLinks: [],
+    socialLinks: [{
+        name: String,
+        link: String
+    }],
     profileImgPath: {
         type: String,
         default: ''

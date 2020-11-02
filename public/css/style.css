@@ -687,11 +687,11 @@ footer .footer_banner {
 }
 
 .menu_btns {
-    margin-top: 33px;
+    margin-top: -30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
 }
 
 .menu_btns a {
@@ -2895,3 +2895,37 @@ color: red;
 }
 
 /* End Gifts Page */
+
+
+
+/*jQuery datapicker*/
+#calendar{
+    display: flex;
+    justify-content: center;
+    margin-top: 12%;
+    
+}
+.ui-datepicker-header .ui-datepicker-title{
+    color: #00ADB9;
+}
+.ui-datepicker-header .ui-corner-all{
+ 
+    margin-top: 2px;
+}
+.ui-datepicker-calendar thead tr th span{
+    
+    outline: none;
+    color: #00ADB9;
+}
+.ui-datepicker-calendar tbody tr td .ui-state-default{
+    border: 0.5px solid #CACACA;
+    outline: none;
+    color: #00ADB9;
+    background: none;
+    text-align: center;
+}
+
+.ui-datepicker-calendar tbody tr td .ui-state-hover{
+   color: white;
+    background:  #00ADB9;
+}
