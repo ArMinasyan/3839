@@ -2280,6 +2280,7 @@ color: red;
 }
 
 .accounts_banner, .accounts_sect2_banner, .accounts_sect3_banner, .accounts_sect4_banner {
+    
     border-bottom: 1px solid #E1E1E1;
     background: #F4F4F4;
 }
@@ -2357,12 +2358,36 @@ color: red;
     padding-left: 0;
 }
 
+.edit_setting .description_change_button{
+    border: 0;
+    border-radius: .25em;
+    background: initial;
+    background-color: #00AD89;
+    color: #fff;
+    font-size: 0.9em;
+    width: 80px;
+     
+}
+#description_set{
+    height: 180px;
+    overflow-y: auto;
+}
+
+.description_change_buttonGroup{
+    display: none;
+    margin-top: 10px;
+}
+
 .edit_setting, .edit_setting:active, .edit_setting:focus, .edit_setting:hover {
     background-color: transparent !important;
     border: none !important;
     color: #2A9AD9 !important;
 }
 
+#description_set{
+    text-align: justify;
+   
+}
 .accounts_section3 {
     max-width: 1270px;
     width: 100%;
@@ -2373,6 +2398,7 @@ color: red;
 }
 
 .accounts_sect3_info {
+    width: 65%;
     max-width: 723px;
 }
 
@@ -2396,8 +2422,11 @@ color: red;
     margin-bottom: 35px;
 }
 
-.accounts_social_menu ul li .add_link_btn {
+.accounts_social_menu ul li .link_text {
     margin-right: 20px;
+    font-weight: 500;
+    color: #028383;
+    font-size: 1.2em;
 }
 
 .accounts_social_menu svg, .accounts_social_menu img {
@@ -2429,10 +2458,22 @@ color: red;
     width: auto;
 }
 
+
+
 .accounts_social_menu button, .accounts_social_menu:focus, .accounts_social_menu:active, .accounts_social_menu:hover {
-    background-color: transparent !important;
-    border: none !important;
-    color: #4D4D4D !important;
+    background-color: transparent;
+    border: none ;
+    color: #4D4D4D ;
+}
+
+.accounts_social_menu .buttons .links_changeButton{
+    border: 0;
+    border-radius: .25em;
+    background: initial;
+    background-color: #00AD89;
+    color: #fff;
+    font-size: 1em;
+    width: 100px;
 }
 
 .accounts_section4 {
@@ -2928,4 +2969,82 @@ color: red;
 .ui-datepicker-calendar tbody tr td .ui-state-hover{
    color: white;
     background:  #00ADB9;
+}
+
+
+/*SWAL*/
+/*Main Info*/
+.main_info_swal .swal2-modal,
+.social_links_swal .swal2-modal{
+     border: 2px solid #00ADB9; 
+    outline: none;
+    width: auto;
+    
+}
+
+.social_links_swal .swal2-modal{
+    width: 40%;
+} 
+
+.swal2-container .swal2-modal .swal2-header  .swal2-title{
+    color: #00ADB9;
+}
+
+.main_info_swal .swal2-actions .swal2-confirm,
+.social_links_swal .swal2-actions .swal2-confirm,
+.main_info_swal  .swal2-actions .swal2-cancel,
+.social_links_swal .swal2-actions .swal2-cancel
+{
+    background-color: #00ADB9;
+    color: white;
+}
+
+
+.main_info_swal .swal-container--sub,
+.social_links_swal .swal-container--sub
+{
+    display: flex;
+    flex-direction: row;
+    height: 35px;
+    color: #00ADB9;
+    align-items: center;
+}
+
+.social_links_swal .swal-container--sub
+{
+    flex-direction: column;
+     height: 100%;
+}
+
+.main_info_swal .swal-container--sub .swal-container--sub_1,
+.social_links_swal .swal-container--sub .swal-container--sub_1{
+    display: block;
+    width: 150px;
+    color: #00ADB9;
+}
+
+.main_info_swal .swal-container--sub .swal-container--sub_2 input,
+.social_links_swal .swal-container--sub .swal-container--sub_2 input{
+    border-radius: 5px;
+    padding-left: 10px;
+    border: 1px solid #B5B5B5;
+    color: #AAAAAA;
+}
+
+.social_links_swal .swal-container--sub .swal-container--sub_1{
+    margin-top: 5px;
+}
+
+
+
+
+
+.social_links_swal .swal2-content{
+    width: 100%;
+}
+
+
+
+.social_links_swal .swal-container--sub_2 input{
+    width: 400px;
 }

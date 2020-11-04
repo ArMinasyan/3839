@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "SET NODE_ENV=development && nodemon  app.js"
+    "dev": "SET NODE_ENV=development && nodemon --ignore views/ --ignore public/  app.js"
   },
   "author": "",
   "license": "ISC",

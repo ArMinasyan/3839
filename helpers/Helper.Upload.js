@@ -39,7 +39,9 @@ const storage2 = multer.diskStorage({
     },
 
     filename: function (req, file, cb) {
+
         const ext = path.extname(file.originalname);
+
         const imgPath = 'logo_' + req.user.id + ext;
 
         UserPageData.findOneAndUpdate({ user_id: req.user.id }, { logoImgPath: imgPath }).then(updated => {
@@ -50,10 +52,22 @@ const storage2 = multer.diskStorage({
             req.user.logo_img = imgPath;
         });
 
+
+
     },
 })
 
+const filter = (req, file, cb) => {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+        cb(null, true);
+    } else {
+        cb(null, false);
+        req.user.error = 'Only .png, .jpg and .jpeg format allowed!';
+    }
+};
+
+
 module.exports = {
-    profile: multer({ storage: storage1 }),
-    logo: multer({ storage: storage2 })
+    profile: multer({ storage: storage1, fileFilter: filter }),
+    logo: multer({ storage: storage2, fileFilter: filter })
 }

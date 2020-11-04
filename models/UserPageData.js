@@ -18,10 +18,24 @@ module.exports = model('UserPageData', new Schema({
     session_format: String,
     age_speciality: Number,
     //
-    socialLinks: [{
-        name: String,
-        link: String
-    }],
+    socialLinks: {
+        instagram: {
+            type: String,
+            default: ''
+        },
+        facebook: {
+            type: String,
+            default: ''
+        },
+        linkedin: {
+            type: String,
+            default: ''
+        },
+        twitter: {
+            type: String,
+            default: ''
+        },
+    },
     profileImgPath: {
         type: String,
         default: ''
@@ -30,6 +44,9 @@ module.exports = model('UserPageData', new Schema({
         type: String,
         default: ''
     },
-    description: String,
+    description: {
+        type: String,
+        default: ''
+    },
     invoices: [{}]
 }));

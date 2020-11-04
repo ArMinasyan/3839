@@ -87,6 +87,6 @@ app.get('/user', VerifyToken, (req, res, next) => {
     res.sendFile(__dirname + '/views/account-page.html');
 })
 
-HttpServer.listen(process.env.PORT || 8080, () => {
-    console.log('Start');
+app.listen(process.env.PORT || 8080, () => {
+    console.log('localhost:8080');
 })
