@@ -235,6 +235,7 @@ $(document).ready(function () {
         }
     });
 
+    $('#services_list').menu();
 
 
     $.get('/api/User/MainData').then(response => {

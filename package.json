@@ -19,10 +19,10 @@
     "express-validator": "^6.6.1",
     "googleapis": "^61.0.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.8",
+    "mongoose": "^5.10.11",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
-    "nodemailer": "^6.4.13",
-    "twilio": "^3.49.4"
+    "nodemailer": "^6.4.14",
+    "twilio": "^3.50.0"
   }
 }

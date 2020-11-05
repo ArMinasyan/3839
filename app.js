@@ -74,9 +74,9 @@ app.get('/', (req, res, next) => {
 
 const { createHmac } = require('crypto');
 
-app.get('/test', (req, res, next) => {
-    res.send(createHmac('SHA256', '7fd04df92f63').update('test.112025@gmail.com').digest('hex'))
-})
+// app.get('/test', (req, res, next) => {
+//     res.send(createHmac('SHA256', '7fd04df92f63').update('test.112025@gmail.com').digest('hex'))
+// })
 
 app.get('/sign_up', (req, res, next) => {
     res.sendFile(__dirname + '/views/sign-like-therapist.html');
@@ -87,6 +87,9 @@ app.get('/user', VerifyToken, (req, res, next) => {
     res.sendFile(__dirname + '/views/account-page.html');
 })
 
+app.get('/test', (req, res, next) => {
+    res.sendFile(__dirname + '/views/test.html');
+})
 app.listen(process.env.PORT || 8080, () => {
     console.log('localhost:8080');
 })
