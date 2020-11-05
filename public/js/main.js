@@ -18,13 +18,14 @@ $(document).on('click', '#send_pin_email, #send_pin_phone', function (e) {
 
     let part = e.target.id.split('_')[2];
 
-    $.post('api/auth/send_pin_' + part, { [part]: $('#reg_' + part).val() }).then(res => {
+    $.post('api/auth/send_pin_' + part, {
+        [part]: $('#reg_' + part).val()
+    }).then(res => {
 
         if (res.err) {
             $(`#${part}_error`).text(res.err.msg);
             $(`#${part}_error`).css('display', 'block')
         } else {
-            //$(`#${part}_error`).text('');
             if (res) {
                 $(`#${part}_error`).text('');
                 $('#send_pin_' + part).prop('disabled', true);
@@ -46,9 +47,9 @@ function emailVerify(stepContentNext) {
             $(`#email_pin_error`).text('Incorrect verification code.');
             $(`#email_pin_error`).css('display', 'block');
         } else {
-            $(`#email_pin`).val('');
-            $('.form-step-content').hide();
-            $('.form-step-content').eq(stepContentNext).fadeIn(500);
+            valid.email=true;
+            $('#step_1').attr('hidden', true);
+            $('#step_2').removeAttr('hidden');
             $('.step-item').eq(stepContentNext).addClass('step-item-active');
         }
     })
@@ -85,7 +86,17 @@ function phoneVerify(data) {
     })
 }
 
+$(document).on('click', '#show_signin', e => {
+    $('#signup_form').attr('hidden', true);
+    $('#signin_form').removeAttr('hidden');
+})
 
+$(document).on('click', '#show_signup', e => {
+    $('#signin_form').attr('hidden', true);
+    $('#signup_form').removeAttr('hidden');
+
+
+})
 $(document).ready(function () {
     let data = {
         username: "",
@@ -123,56 +134,48 @@ $(document).ready(function () {
         let stepContentNext = _this.closest('.form-step-content').index() + 1;
 
 
-
-        // $('.form-step-content').hide();
-        // $('.form-step-content').eq(stepContentNext).fadeIn(500);
-        // $('.step-item').eq(stepContentNext).addClass('step-item-active');
-
-        $(".form-step-content").eq(stepContent).find('input, select').each(function () {
-            if ($(this).attr('name')) data[this.name] = $(this).val();
-        });
+        Object.keys(data).forEach(key => {
+            data[key] = $(`input[name=${key}]`).val();
+        })
 
 
 
 
+        if ($('#email_pin').val() !== '' && !valid.email) emailVerify(stepContentNext);
+        else
+        if ($('#phone_pin').val() !== '' && !valid.phone) phoneVerify(data);
+        else {
+            $.ajax({
+                method: 'POST',
+                data: data,
+                url: '/api/auth/sign_up',
+                success: function (res) {
+                    if (res.err) {
 
-        if ($('#email_pin').val() !== '' && !valid.email) emailVerify(stepContentNext); else
-            if ($('#phone_pin').val() !== '' && !valid.phone) phoneVerify(data); else {
-                $.ajax({
-                    method: 'POST',
-                    data: data,
-                    url: '/api/auth/sign_up',
-                    success: function (res) {
-                        if (res.err) {
+                        last_field = `#${res.err.param}_error`;
+                        $(`#${res.err.param}_error`).text(res.err.msg);
+                        $(`#${res.err.param}_error`).css('display', 'block');
 
-                            last_field = `#${res.err.param}_error`;
-                            $(`#${res.err.param}_error`).text(res.err.msg);
-                            $(`#${res.err.param}_error`).css('display', 'block');
-
-                        } else {
-                            $('.form-step-content').hide();
-                            $('.form-step-content').eq(stepContentNext).fadeIn(500);
-                        }
+                    } else {
+                        $('#step_1').attr('hidden', true);
+                        $('#step_2').removeAttr('hidden');
                     }
-                })
-            }
-
-
-
-
+                }
+            })
+        }
     });
 
 
     // Step bar
-    $(document).on('click', '.step-item-active', function () {
-        var _this = $(this);
-        var index = _this.index();
-        var hideNext = index + 1;
+    // $(document).on('click', '.step-item-active', function () {
+    //     var _this = $(this);
+    //     var index = _this.index();
+    //     var hideNext = index + 1;
 
 
-        $(_this).nextAll().removeClass('step-item-active');
+    //     $(_this).nextAll().removeClass('step-item-active');
 
-    });
+    // });
 
 });
 
@@ -190,6 +193,7 @@ function readURL(input) {
 $("#imageUpload").change(function () {
     readURL(this);
 });
+
 function readURL2(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -204,4 +208,3 @@ function readURL2(input) {
 $("#imageUpload2").change(function () {
     readURL2(this);
 });
-

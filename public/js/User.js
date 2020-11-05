@@ -235,8 +235,14 @@ $(document).ready(function () {
         }
     });
 
-    $('#services_list').menu();
+    $('#services_list').menu({
+        position: { my: "left top", at: "right+5 top" },
 
+    });
+
+    $('#services_list').on('click', function (e) {
+        console.log(e.target.innerText);
+    })
 
     $.get('/api/User/MainData').then(response => {
         let first = '';

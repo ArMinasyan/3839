@@ -37,8 +37,8 @@
                     <li><a href="">Home</a></li>
                     <li><a href="">Pricing</a></li>
                     <li><a href="">Clients</a></li>
-                    <li><a href="">Log in</a></li>
-                    <li><a href="">Sign Up</a></li>
+                    <li><a id="show_signin">Log in</a></li>
+                    <li><a id="show_signup">Sign Up</a></li>
                 </ul>
                 <div class="nav-menu2">
                     <ul>
@@ -63,10 +63,31 @@
 
     <div class="sign_up_banner">
         <div class="sign_up_steps">
-            <label>Sign up to get access to all <span style="color:#00ADB9 ;">Therapy Bubble</span> features.</label>
+            <!-- <label>Sign up to get access to all <span style="color:#00ADB9 ;">Therapy Bubble</span> features.</label> -->
 
-            <div class="container">
-                <div class="form-steps-form">
+            <div class="container sign_container">
+                <!-- <div class="logo"><a href="#"><img src="images/logo.png"></a></div> -->
+                <!-- <div class="startPage_banner" id='signin_form'> -->
+                <div class="startPage_body" id='signin_form'>
+                    <div class="logo"><a href="#"><img src="images/logo.png"></a></div>
+                    <div class="loginContainer form-step-content">
+                        <div class="input_container ">
+                            <img src="images/business-name.svg">
+                            <input type="email" placeholder="Email" id="log_email">
+                        </div>
+                        <div class="input_container">
+                            <img src="images/password.svg">
+                            <input type="password" placeholder="Password" id="log_password">
+                        </div>
+                        <span class="signin_error" id="signin_error"></span>
+                        <div class="input_container">
+                            <button type="button" class="next_btn text" id="signin">Sign In</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+                <div class="form-steps-form" hidden id="signup_form">
+
                     <div class="form-step-bar">
                         <div class="step-item step-item-active">
                             <div class="step-icon">1</div>
@@ -93,10 +114,12 @@
 
                     </div>
 
+
+
                     <div class="form-steps-content-summary">
                         <!-- Step 1 -->
-                        <div class="form-step-content step step_1">
-                            <form id="step_1">
+                        <div class="form-step-content" id="step_1">
+                            <form>
                                 <div class="input_container">
                                     <img src="images/business-name.svg">
                                     <input type="text" placeholder="Username *" name="username">
@@ -129,18 +152,19 @@
 
                                 <input class="start_free_btn" type="submit" disabled
                                     value="START MY FREE 3 month trial here">
+                                <div class="contact-form-item contact-form-submit">
+                                    <button type="button" id="next" class="next_btn text form-step-button">NEXT</button>
+                                    <span class="icon arrow-right-icon-white"></span>
+                                    <!-- </a> -->
+                                </div>
                             </form>
-                            <div class="contact-form-item contact-form-submit">
-                                <button type="button" id="next" class="next_btn text form-step-button">NEXT</button>
-                                <span class="icon arrow-right-icon-white"></span>
-                                <!-- </a> -->
-                            </div>
+
                         </div>
                         <!-- END Step 1 -->
 
                         <!-- Step 2 -->
-                        <div class="form-step-content step step_2">
-                            <form id="step_2">
+                        <div class="form-step-content" id="step_2" hidden>
+                            <form>
 
                                 <div class="input_container">
                                     <img src="images/country.svg">
