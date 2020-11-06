@@ -3176,9 +3176,11 @@ p.price_bottomText {
 
     font-size: 16px;
     background-color: rgba(42, 154, 217, 0.05);
-    color: #2A9AD9;
+    /* color: #2A9AD9; */
+    color: #00ADB9;
     outline: none;
-    border: 1px solid #2A9AD9;
+    /* border: 1px solid #2A9AD9; */
+    border: 1px solid #00ADB9;
     border-radius: 5px;
     text-align: center;
     height: 30px;
@@ -3193,16 +3195,13 @@ p.price_bottomText {
     border: none;
 }
 
-/*
-#services_list .ui-menu-item .ui-widget-content .ui-menu-item:nth-child(0) {
-    border: none;
-    margin-top: 0;
-} */
+
 
 #services_list .ui-menu-item .ui-state-active,
 #services_list .ui-menu-item:hover {
     color: white;
-    background: #2A9AD9;
+    /* background: #2A9AD9; */
+    background: #00ADB9;
     border-radius: 5px;
     border: none;
     /* border: 1px solid #2A9AD9; */

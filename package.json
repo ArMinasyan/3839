@@ -1,11 +1,15 @@
 {
-  "name": "3839",
+  "name": "id-3839",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "private":"true",
   "scripts": {
     "start": "node app.js",
     "dev": "SET NODE_ENV=development && nodemon --ignore views/ --ignore public/  app.js"
+  },
+  "engines": {
+    "node": "12.19.0"
   },
   "author": "",
   "license": "ISC",

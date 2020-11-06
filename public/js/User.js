@@ -236,7 +236,7 @@ $(document).ready(function () {
     });
 
     $('#services_list').menu({
-        position: { my: "left top", at: "right+5 top" },
+        position: { my: "left top", at: "right+5 top-3" },
 
     });
 

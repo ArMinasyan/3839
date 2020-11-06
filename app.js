@@ -87,6 +87,14 @@ app.get('/user', VerifyToken, (req, res, next) => {
     res.sendFile(__dirname + '/views/account-page.html');
 })
 
+app.get('/client',  (req, res, next) => {
+    res.sendFile(__dirname + '/views/home-clients.html');
+})
+
+app.get('/therapist',  (req, res, next) => {
+    res.sendFile(__dirname + '/views/home-therapist.html');
+})
+
 app.get('/test', (req, res, next) => {
     res.sendFile(__dirname + '/views/test.html');
 })
