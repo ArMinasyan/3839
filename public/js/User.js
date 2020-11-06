@@ -1,3 +1,5 @@
+//import list from './list';
+
 $(document).on('change', '#imageUpload2', e => {
     $(this).val('');
     const form = new FormData();
@@ -301,6 +303,7 @@ $(document).on('click', '#edit_main', e => {
                 }
             })
     });
+
     $('#services_list').menu({
         position: {
             my: "left top",
@@ -317,6 +320,47 @@ const addService = (id) => {
     new_child_index++;
     $(id).append(new_child)
 }
+
+
+const list = [' Life coaching',
+    ' Help client to find self inspiration',
+    ' Face to face',
+    ' Online booking',
+    ' Business coaching',
+    ' Help with mindset',
+    ' Creative thinking',
+    ' Strategy',
+    ' Marketing',
+    ' Sales',
+    ' Networking',
+    ' Face to Face',
+    ' Online',
+];
+
+let current_ptr = null;
+
+$(document).on('click', '.temp_child', e => {
+    const last_child = $('#service_list_push ').children('.services_list_push_child').last();
+
+    last_child.text(e.target.innerText);
+    $('.temp_child').remove();
+    addService('#service_list_push');
+    $('.services_list_push_child').next().focus();
+
+})
+$(document).on('keyup', '.services_list_push_child', e => {
+    current_ptr = e;
+    if ((e.which >= 65 && e.which <= 90) || (e.which >= 97 && e.which <= 122) || e.which == 8) {
+        const new_list = list.filter(elem => elem.includes(e.target.innerText));
+        if (e.target.innerText != '') {
+            if ($('#service_list_push').children.length > 0) $('.temp_child').remove();
+            new_list.map(elem => {
+
+                $('#service_list_push').append(`<span class="temp_child">${elem}</span>`)
+            });
+        } else $('.temp_child').remove();
+    }
+})
 
 $(document).on('click', '#service_list_push', e => {
     if ($('#service_list_push').children().length == 0) {
