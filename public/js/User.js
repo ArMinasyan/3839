@@ -396,24 +396,28 @@ $(document).on('click', '.temp_child', e => {
 })
 $(document).on('keyup', '.services_list_push_child', e => {
     current_ptr = e;
-    if ((e.which >= 65 && e.which <= 90) || (e.which >= 97 && e.which <= 122) || e.which == 8) {
-        const new_list = list.filter(elem => elem.includes(e.target.innerText));
-        if (e.target.innerText != '') {
-            if ($('#service_list_push').children.length > 0) $('.temp_child').remove();
-            new_list.map(elem => {
 
-                $('#service_list_push').append(`<span class="temp_child">${elem}</span>`)
-            });
+    if ((e.which >= 65 && e.which <= 90) || (e.which >= 97 && e.which <= 122) || e.which == 8) {
+
+        if (e.target.innerText != '') {
+            const firstL = e.target.innerText[0].toUpperCase();
+            const new_list = list.filter(elem => elem.includes(firstL + e.target.innerText.substr(1), 0));
+
+            if ($('#service_list_push').children.length > 0) $('.temp_child').remove();
+            new_list.map(elem => $('#service_list_push').append(`<span class="temp_child">${elem}</span>`));
         } else $('.temp_child').remove();
     }
 })
 
 $(document).on('click', '#service_list_push', e => {
+
+
     if ($('#service_list_push').children().length == 0) {
         addService('#service_list_push');
         $('.services_list_push_child').focus();
-    } else
-    if (e.target.id == 'service_list_push') addService('#service_list_push');
+    } else if (e.target.id == 'service_list_push') addService('#service_list_push');
+
+
 })
 
 $(document).on('keypress', '#service_list_push', e => {
