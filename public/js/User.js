@@ -322,7 +322,51 @@ const addService = (id) => {
 }
 
 
-const list = [' Life coaching',
+const list = ['feet',
+    'hands',
+    ' Medical pedicure',
+    ' chiropody ',
+    'podiatry',
+    ' Manicure',
+    ' Perdicure',
+    ' Nail art',
+    ' Shellac',
+    ' Acrylics',
+    ' Natural products',
+    ' Wax treatments',
+    ' Nail conditioning treatments',
+    'Make up',
+    'Hair',
+    'Cut',
+    'lowlights',
+    'Tints',
+    'high',
+    ' Perming',
+    ' Chemical hair straightening',
+    ' Wash and blow dry',
+    ' Hair up/ dressing hair for events',
+    ' Barbering',
+    'Spinal/ joint/ cranial manipulation',
+    ' Consultation',
+    ' Face to Face booking',
+    ' Video booking',
+    ' Councelling',
+    ' Anxiety',
+    ' Trauma',
+    ' Relationships',
+    ' Depression',
+    ' Low moods',
+    ' CBT',
+    ' Psychotherapy',
+    ' Face to Face booking',
+    ' Online booking',
+    ' Happy thinking',
+    ' Relaxing',
+    ' Invigorating',
+    ' Destressing',
+    ' Face to face',
+    ' Online',
+    ' Life coaching',
     ' Help client to find self inspiration',
     ' Face to face',
     ' Online booking',
@@ -342,7 +386,9 @@ let current_ptr = null;
 $(document).on('click', '.temp_child', e => {
     const last_child = $('#service_list_push ').children('.services_list_push_child').last();
 
+    last_child.css('width', (e.target.innerText.length + 1) * 8);
     last_child.text(e.target.innerText);
+
     $('.temp_child').remove();
     addService('#service_list_push');
     $('.services_list_push_child').next().focus();

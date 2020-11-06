@@ -22,17 +22,13 @@ export default [{
 
 
 
-//                                 <div> Nails</div>
-//                                 <ul>
+//                                 Nails
 //                                     'feet',
 //                                     'hands',
-//                                     '
-//                                         <div>Medical pedicure</div>
-//                                         <ul>
+                                    
+//                                        ' Medical pedicure'
 //                                             ' chiropody ',
 //                                             'podiatry',
-//                                         </ul>
-//                                     ',
 //                                     ' Manicure',
 //                                     ' Perdicure',
 //                                     ' Nail art',
@@ -41,37 +37,29 @@ export default [{
 //                                     ' Natural products',
 //                                     ' Wax treatments',
 //                                     ' Nail conditioning treatments',
-//                                 </ul>
-//                             ',
+                                
 //                             'Make up',
-//                             '
-//                                 <div>Hair</div>
-//                                 <ul>
+                            
+//                                 'Hair'
+                                
 //                                     'Cut',
-//                                     '
-//                                         <div>Colour</div>
-//                                         <ul>
+                                    
+                                       
 //                                             'lowlights',
 //                                             'Tints',
 //                                             'high',
-//                                         </ul>
-//                                     ',
-//                                 </ul>
-//                             ',
+                                 
 //                             ' Perming',
 //                             ' Chemical hair straightening',
 //                             ' Wash and blow dry',
 //                             ' Hair up/ dressing hair for events',
 //                             ' Barbering',
-//                             '
-//                                 <div>Osteopathy</div>
-//                                 <ul>
+                            
 //                                     'Spinal/ joint/ cranial manipulation',
 //                                     ' Consultation',
 //                                     ' Face to Face booking',
 //                                     ' Video booking',
-//                                 </ul>
-//                             ',
+                                
 //                             ' Councelling',
 //                             ' Anxiety',
 //                             ' Trauma',
@@ -82,28 +70,25 @@ export default [{
 //                             ' Psychotherapy',
 //                             ' Face to Face booking',
 //                             ' Online booking',
-//                             '
-//                                 <div>Mindfulness</div>
-//                                 <ul>
+                           
 //                                     ' Happy thinking',
 //                                     ' Relaxing',
 //                                     ' Invigorating',
 //                                     ' Destressing',
 //                                     ' Face to face',
-//                                     ' Online',
-//                                 </ul>
-//                             ',
-                            // ' Life coaching',
-                            // ' Help client to find self inspiration',
-                            // ' Face to face',
-                            // ' Online booking',
-                            // ' Business coaching',
-                            // ' Help with mindset',
-                            // ' Creative thinking',
-                            // ' Strategy',
-                            // ' Marketing',
-                            // ' Sales',
-                            // ' Networking',
-                            // ' Face to Face',
-                            // ' Online',
+//                                  ' Online',
+                                
+// ' Life coaching',
+// ' Help client to find self inspiration',
+// ' Face to face',
+// ' Online booking',
+// ' Business coaching',
+// ' Help with mindset',
+// ' Creative thinking',
+// ' Strategy',
+// ' Marketing',
+// ' Sales',
+// ' Networking',
+// ' Face to Face',
+// ' Online',
 //                         </ul>
