@@ -232,6 +232,15 @@ select:focus {
     padding-left: 20px;
 }
 
+
+
+.nav-menu ul li:hover,
+.nav-menu ul li a:hover {
+    cursor: pointer;
+    color: #028383;
+
+}
+
 .nav-menu ul li a {
     font-family: "SFProDisplay-Medium";
     font-style: normal;
@@ -658,6 +667,8 @@ footer .footer_banner {
 
 .startPage_body .logo {
     padding-top: 47px;
+    justify-content: center;
+    display: flex;
 }
 
 .startPage_body .logo img {
@@ -3132,6 +3143,37 @@ p.price_bottomText {
     align-items: center;
 }
 
+.main_info_swal .swal-container--sub:last-child {
+    margin-top: 22px;
+}
+
+.accounts_section2 .accounts_sect2_left>#service_list_push {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #B5B5B5;
+    /* display: block; */
+    width: 500px;
+    height: 200px;
+    border-radius: 5px;
+    margin-left: 50px;
+}
+
+.accounts_section2 .accounts_sect2_left {
+    display: flex;
+}
+
+
+
+.accounts_section2 .accounts_sect2_left>#service_list_push .services_list_push_child {
+    border-radius: 5px;
+    border: 1px solid rgb(181, 181, 181);
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    margin: 5px 5px;
+    font-size: 1em;
+}
+
 .social_links_swal .swal-container--sub {
     flex-direction: column;
     height: 100%;
@@ -3170,6 +3212,7 @@ p.price_bottomText {
 #services_list {
     text-align: center;
     border: none;
+    z-index: 1;
 }
 
 #services_list .ui-menu-item {
