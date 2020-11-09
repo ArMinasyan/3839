@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { createServer } = require('http');
+const {
+    createServer
+} = require('http');
 const body_parser = require('body-parser');
 const cookie_parser = require('cookie-parser');
 
@@ -41,7 +43,9 @@ mongoose.connect(mongodb_url, {
 
 
 app.use(body_parser.json());
-app.use(body_parser.urlencoded({ extended: true }));
+app.use(body_parser.urlencoded({
+    extended: true
+}));
 app.use(cookie_parser());
 
 
@@ -59,7 +63,9 @@ cors({
     ]
 });
 
-const { VerifyToken } = require('./helpers/Helper.Token');
+const {
+    VerifyToken
+} = require('./helpers/Helper.Token');
 
 app.post('/test', VerifyToken, (req, res, next) => {
     res.send('Login');
@@ -68,15 +74,18 @@ app.post('/test', VerifyToken, (req, res, next) => {
 
 
 app.get('/', (req, res, next) => {
-    if (req.cookies && req.cookies.token) res.redirect('/user'); else
+    if (req.cookies && req.cookies.token) res.redirect('/user');
+    else
         res.sendFile(__dirname + '/views/index.html');
 })
 
-const { createHmac } = require('crypto');
+const {
+    createHmac
+} = require('crypto');
 
- app.get('/testHash/:value', (req, res, next) => {
-     res.send(createHmac('SHA256', '7fd04df92f63').update(req.params.value).digest('hex'))
- })
+app.get('/testHash/:value', (req, res, next) => {
+    res.send(createHmac('SHA256', '7fd04df92f63').update(req.params.value).digest('hex'))
+})
 
 app.get('/sign_up', (req, res, next) => {
     res.sendFile(__dirname + '/views/sign-like-therapist.html');
@@ -87,16 +96,66 @@ app.get('/user', VerifyToken, (req, res, next) => {
     res.sendFile(__dirname + '/views/account-page.html');
 })
 
-app.get('/client',  (req, res, next) => {
+app.get('/client', (req, res, next) => {
     res.sendFile(__dirname + '/views/home-clients.html');
 })
 
-app.get('/therapist',  (req, res, next) => {
+app.get('/therapist', (req, res, next) => {
     res.sendFile(__dirname + '/views/home-therapist.html');
 })
 
 app.get('/test', (req, res, next) => {
     res.sendFile(__dirname + '/views/test.html');
+})
+
+const arr = [
+    'Depression',
+    'Stress',
+    'Anxiety',
+    'Self-esteem',
+    'Relationships',
+    'Anger',
+    'Grief'
+];
+
+const services_arr = {
+    s1: ['Depression', 'Stress', 'Anxiety'],
+    s2: ['Anxiety', 'Self-esteem', 'Relationships'],
+    s3: ['Depression', 'Stress'],
+    s4: ['Anxiety', 'Self-esteem', 'Anger', 'Grief'],
+    s5: ['Self-esteem', 'Relationships']
+}
+
+const s = ['s1', 's2', 's3', 's4', 's5'];
+
+
+const upd = require('./models/UserPageData');
+const faker = require('faker');
+const gender_arr = ['male', 'female'];
+let data = [];
+app.get('/testAdd', (req, res, next) => {
+    let gender, fname, lname, services, email;
+
+    for (let i = 0; i < 5; i++) {
+        gender = faker.random.arrayElement(gender_arr);
+        fname = faker.name.firstName(gender);
+        lname = faker.name.lastName(gender);
+        email = faker.internet.email(fname, lname);
+        services = services_arr[faker.random.arrayElement(s)];
+        data.push({
+            isClient: false,
+            firstName: fname,
+            lastName: lname,
+            services: services,
+            contact: email
+        });
+    }
+
+
+    upd.insertMany(data).then(doc => {
+        res.send('Inserted')
+    })
+
 })
 app.listen(process.env.PORT || 8080, () => {
     console.log('localhost:8080');

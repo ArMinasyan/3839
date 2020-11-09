@@ -179,107 +179,7 @@ $(document).on('click', '#edit_main', e => {
         <div class="swal-container--sub">
         <div class="swal-container--sub_1">Phone Number</div>
         <div class="swal-container--sub_2"><input type="text" value='${$('#phone_set').text()}' name='Si_phone'/></div>
-        </div>
-        
-        
-        <ul id="services_list" hidden>
-        <li>
-            <div>Hair removal</div>
-            <ul>
-                <li>Waxing</li>
-                <li>Sugaring</li>
-                <li>Threading</li>
-                <li>Laser</li>
-            </ul>
-        </li>
-        <li>
-            <div> Nails</div>
-            <ul>
-                <li>feet</li>
-                <li>hands</li>
-                <li>
-                    <div>Medical pedicure</div>
-                    <ul>
-                        <li>chiropody </li>
-                        <li>podiatry</li>
-                    </ul>
-                </li>
-                <li> Manicure</li>
-                <li> Pedicure</li>
-                <li> Nail art</li>
-                <li> Shellac</li>
-                <li> Acrylics</li>
-                <li> Natural products</li>
-                <li> Wax treatments</li>
-                <li> Nail conditioning treatments</li>
-            </ul>
-        </li>
-        <li>Make up</li>
-        <li>
-            <div>Hair</div>
-            <ul>
-                <li>Cut</li>
-                <li>
-                    <div>Colour</div>
-                    <ul>
-                        <li>lowlights</li>
-                        <li>Tints</li>
-                        <li>high</li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li> Perming</li>
-        <li> Chemical hair straightening</li>
-        <li> Wash and blow dry</li>
-        <li> Hair up/ dressing hair for events</li>
-        <li> Barbering</li>
-        <li>
-            <div>Osteopathy</div>
-            <ul>
-                <li>Spinal/ joint/ cranial manipulation</li>
-                <li> Consultation</li>
-                <li> Face to Face booking</li>
-                <li> Video booking</li>
-            </ul>
-        </li>
-        <li> Councelling</li>
-        <li> Anxiety</li>
-        <li> Trauma</li>
-        <li> Relationships</li>
-        <li> Depression</li>
-        <li> Low moods</li>
-        <li> CBT</li>
-        <li> Psychotherapy</li>
-        <li> Face to Face booking</li>
-        <li> Online booking</li>
-        <li>
-            <div>Mindfulness</div>
-            <ul>
-                <li> Happy thinking</li>
-                <li> Relaxing</li>
-                <li> Invigorating</li>
-                <li> Destressing</li>
-                <li> Face to face</li>
-                <li> Online</li>
-            </ul>
-        </li>
-        <li> Life coaching</li>
-        <li> Help client to find self inspiration</li>
-        <li> Face to face</li>
-        <li> Online booking</li>
-        <li> Business coaching</li>
-        <li> Help with mindset</li>
-        <li> Creative thinking</li>
-        <li> Strategy</li>
-        <li> Marketing</li>
-        <li> Sales</li>
-        <li> Networking</li>
-        <li> Face to Face</li>
-        <li> Online</li>
-    </ul>
-    
-    </div>
+get        </div>
         </div> `,
         showCancelButton: true,
         //  allowOutsideClick: false,
@@ -313,16 +213,16 @@ $(document).on('click', '#edit_main', e => {
     });
 });
 
-const addService = (id) => {
-    let new_child = document.createElement('div');
-    new_child.setAttribute('contenteditable', true);
-    new_child.setAttribute('class', 'services_list_push_child');
-    new_child_index++;
-    $(id).append(new_child)
-}
-
-
-const list = ['feet',
+const listComplaint = [
+    'Depression',
+    'Stress',
+    'Anxiety',
+    'Self-esteem',
+    'Relationships',
+    'Anger',
+    'Grief'
+]
+const listServices = ['feet',
     'hands',
     ' Medical pedicure',
     ' chiropody ',
@@ -381,52 +281,67 @@ const list = ['feet',
     ' Online',
 ];
 
-let current_ptr = null;
+const addService = (id) => {
+    let new_child = document.createElement('div');
+    new_child.setAttribute('contenteditable', true);
+    new_child.setAttribute('class', id + '_child');
+    new_child_index++;
+    $('#' + id).append(new_child)
+}
+
+
+
 
 $(document).on('click', '.temp_child', e => {
-    const last_child = $('#service_list_push ').children('.services_list_push_child').last();
+    const name = $(e.target).attr('name');
+    const last_child = $('#' + name).children('.' + name + '_child').last();
 
-    last_child.css('width', (e.target.innerText.length + 1) * 8);
+    console.log(e.target.innerText.length);
+    last_child.css('width', (e.target.innerText.length + 2) * 8);
     last_child.text(e.target.innerText);
 
     $('.temp_child').remove();
-    addService('#service_list_push');
-    $('.services_list_push_child').next().focus();
+    addService(name);
+    $('.' + name + '_child').next().focus();
 
 })
-$(document).on('keyup', '.services_list_push_child', e => {
-    current_ptr = e;
 
-    if ((e.which >= 65 && e.which <= 90) || (e.which >= 97 && e.which <= 122) || e.which == 8) {
+function showTempChild(e) {
+    const splited_className = $(e.target).attr('class').split('_');
+    const id = splited_className[0] + '_' + splited_className[1] + '_' + splited_className[2];
+    const listName = id === 'complaint_list_push' ? listComplaint : listServices;
+    if (e.target.innerText != '') {
+        const firstL = e.target.innerText[0].toUpperCase();
+        const new_list = listName.filter(elem => elem.includes(firstL + e.target.innerText.substr(1), 0));
+        if ($('#' + id).children.length > 0) $('.temp_child').remove();
+        new_list.map(elem => $('#' + id).append(`<span class="temp_child" name=${id}>${elem}</span>`));
+    } else $('.temp_child').remove();
+}
 
-        if (e.target.innerText != '') {
-            const firstL = e.target.innerText[0].toUpperCase();
-            const new_list = list.filter(elem => elem.includes(firstL + e.target.innerText.substr(1), 0));
+$(document).on('keyup', '.service_list_push_child, .complaint_list_push_child', e => {
+    if ((e.which >= 65 && e.which <= 90) || (e.which >= 97 && e.which <= 122) || e.which == 8) showTempChild(e);
+})
 
-            if ($('#service_list_push').children.length > 0) $('.temp_child').remove();
-            new_list.map(elem => $('#service_list_push').append(`<span class="temp_child">${elem}</span>`));
-        } else $('.temp_child').remove();
+function list_click(id, class_name) {
+    if ($('#' + id).children().length == 0 || $('#' + id + ' .' + class_name).last().text().trim() != '') {
+        addService(id);
+        $('.' + class_name).focus();
     }
-})
-
-$(document).on('click', '#service_list_push', e => {
+};
 
 
-    if ($('#service_list_push').children().length == 0) {
-        addService('#service_list_push');
-        $('.services_list_push_child').focus();
-    } else if (e.target.id == 'service_list_push') addService('#service_list_push');
-
-
-})
-
-$(document).on('keypress', '#service_list_push', e => {
+$(document).on('click', '#service_list_push, #complaint_list_push', e => list_click(e.target.id, e.target.id + '_child'));
+$(document).on('keypress', '#service_list_push, #complaint_list_push', e => {
+    const splited_className = $(e.target).attr('class').split('_');
+    const id = splited_className[0] + '_' + splited_className[1] + '_' + splited_className[2];
     if (e.which == 13) {
-        addService('#service_list_push');
-        $('.services_list_push_child').next().focus();
+        list_click(id, id + '_child')
+        $('.' + id + '_child').next().focus();
         return false;
     }
 })
+
+
 
 $(document).on('change', 'input[name=twitter],input[name=linkedin],input[name=instagram],input[name=facebook]', e => {
     updated_links[e.target.name] = e.target.value.trim();
@@ -463,20 +378,49 @@ $(document).on('change', '#imageUpload', e => {
 })
 
 
+$(document).on('click', '#filter', e => {
+    let filter_value = [];
+    const childs = $('#complaint_list_push').children();
+    console.log(childs);
+    for (let i = 0; i < childs.length; i++) {
+        if (childs[i].innerText.trim() !== '') filter_value.push(childs[i].innerText);
+    }
+
+    $.post('api/User/Filter', {
+        data: filter_value
+    }).then(response => {
+        response.data.forEach(elem => {
+            $('#filtered').append(`<div>${elem.firstName} ${elem.lastName} - ${elem.phone}/${elem.contact}</div>`)
+        })
+
+        // console.log(response.data)
+    })
+})
+
+
 $(document).ready(function () {
     //$('#calendar').datapicker();
     $("#calendar").datepicker({
         dateFormat: "dd/mm/yy",
         onSelect: function (date) {
-            console.log(date)
+            Swal.fire({
+                customClass: {
+                    container: 'search_master'
+                },
+                title: 'Complaints',
+                html: `
+                <div id="main">
+                <div id="complaint_list_push" class="push_list"></div>
+                <input type='button' id="filter" value='Search' />
+                <div id="filtered"></div>
+                </div>`
+            })
         }
     });
 
 
 
-    $('#services_list').on('click', function (e) {
-        console.log(e.target.innerText);
-    })
+
 
     $.get('/api/User/MainData').then(response => {
         let first = '';

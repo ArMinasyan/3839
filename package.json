@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "private":"true",
+  "private": "true",
   "scripts": {
     "start": "node app.js",
     "dev": "SET NODE_ENV=development && nodemon --ignore views/ --ignore public/  app.js"
@@ -21,6 +21,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
+    "faker": "^5.1.0",
     "googleapis": "^61.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.11",

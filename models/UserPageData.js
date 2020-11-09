@@ -1,7 +1,12 @@
-const { model, Schema, SchemaTypes } = require('mongoose');
+const {
+    model,
+    Schema,
+    SchemaTypes
+} = require('mongoose');
 
 module.exports = model('UserPageData', new Schema({
     user_id: SchemaTypes.ObjectId,
+    isClient: Boolean,
     firstName: {
         type: String,
         default: ''
@@ -14,7 +19,8 @@ module.exports = model('UserPageData', new Schema({
     phone: String,
     bussines_name: String,
     age: Number,
-    services: String,
+    contact: String,
+    services: [],
     session_format: String,
     age_speciality: Number,
     //
