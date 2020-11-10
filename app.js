@@ -6,7 +6,7 @@ const {
 const body_parser = require('body-parser');
 const cookie_parser = require('cookie-parser');
 const session = require('express-session');
-const FileStore = require('session-file-store')(session);
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 require('dotenv').config();
 const app = express();
@@ -36,13 +36,17 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     secret: 'afsfsgsg262626267',
-    store: new FileStore(),
+    store: new MongoDBStore({
+        uri: mongodb_url,
+        collection: 'session'
+    }),
     cookie: {
         secure: secure_session,
         httpOnly: true,
         sameSite: true,
     }
 }));
+
 
 mongoose.connect(mongodb_url, {
     useNewUrlParser: true,
