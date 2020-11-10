@@ -14,14 +14,18 @@ const storage1 = multer.diskStorage({
 
     filename: function (req, file, cb) {
         const ext = path.extname(file.originalname);
-        const imgPath = 'profile_' + req.user.id + ext;
-        UserPageData.findOneAndUpdate({ user_id: req.user.id }, { profileImgPath: imgPath }).then(updated => {
+        const imgPath = 'profile_' + req.session.user.id + ext;
+        UserPageData.findOneAndUpdate({
+            user_id: req.session.user.id
+        }, {
+            profileImgPath: imgPath
+        }).then(updated => {
 
             if (updated.profileImgPath !== '' && fs.existsSync(path.resolve(process.cwd(), 'ProfileImages/' + updated.profileImgPath)))
                 fs.unlinkSync(path.resolve(process.cwd(), 'ProfileImages/' + updated.profileImgPath));
 
             cb(null, imgPath);
-            req.user.profile_img = imgPath;
+            req.session.user.profile_img = imgPath;
         });
 
     },
@@ -42,14 +46,18 @@ const storage2 = multer.diskStorage({
 
         const ext = path.extname(file.originalname);
 
-        const imgPath = 'logo_' + req.user.id + ext;
+        const imgPath = 'logo_' + req.session.user.id + ext;
 
-        UserPageData.findOneAndUpdate({ user_id: req.user.id }, { logoImgPath: imgPath }).then(updated => {
+        UserPageData.findOneAndUpdate({
+            user_id: req.session.user.id
+        }, {
+            logoImgPath: imgPath
+        }).then(updated => {
             if (updated.logoImgPath !== '' && fs.existsSync(path.resolve(process.cwd(), 'LogoImages/' + updated.logoImgPath)))
                 fs.unlinkSync(path.resolve(process.cwd(), 'LogoImages/' + updated.logoImgPath));
 
             cb(null, imgPath);
-            req.user.logo_img = imgPath;
+            req.session.user.logo_img = imgPath;
         });
 
 
@@ -62,12 +70,18 @@ const filter = (req, file, cb) => {
         cb(null, true);
     } else {
         cb(null, false);
-        req.user.error = 'Only .png, .jpg and .jpeg format allowed!';
+        req.session.user.error = 'Only .png, .jpg and .jpeg format allowed!';
     }
 };
 
 
 module.exports = {
-    profile: multer({ storage: storage1, fileFilter: filter }),
-    logo: multer({ storage: storage2, fileFilter: filter })
+    profile: multer({
+        storage: storage1,
+        fileFilter: filter
+    }),
+    logo: multer({
+        storage: storage2,
+        fileFilter: filter
+    })
 }

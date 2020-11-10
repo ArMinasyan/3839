@@ -7,7 +7,8 @@ const FilterData = require('../controllers/User/Controller.FilterData');
 const {
     Main,
     ChangeDescription,
-    ChangeSocialLink
+    ChangeSocialLink,
+    Services
 } = require('../controllers/User/Controller.UpdateInfo')
 const {
     InsertProfileImg,
@@ -30,5 +31,6 @@ route.post('/User/UpdateDescription', VerifyToken, ChangeDescription);
 route.post('/User/UpdateSocialLinks', VerifyToken, ChangeSocialLink);
 route.post('/User/InsertProfileImg', [VerifyToken, profile.single('profileImage')], InsertProfileImg);
 route.post('/User/InsertLogoImg', [VerifyToken, logo.single('logoImage')], InsertLogoImg);
+route.post('/User/Services', [VerifyToken], Services);
 route.post('/User/Filter', VerifyToken, FilterData)
 module.exports = route;

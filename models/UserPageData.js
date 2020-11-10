@@ -16,11 +16,14 @@ module.exports = model('UserPageData', new Schema({
         default: ''
     },
     country: String,
-    phone: String,
+    //phone: String,
     bussines_name: String,
     age: Number,
-    contact: String,
-    services: [],
+    contact: {
+        phone: String,
+        email: String
+    },
+    services: String,
     session_format: String,
     age_speciality: Number,
     //

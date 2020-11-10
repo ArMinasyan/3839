@@ -2393,6 +2393,31 @@ p.price_bottomText {
     background: #F4F4F4;
 }
 
+
+.accounts_sect_middle_banner>div:first-child {
+    display: flex;
+    justify-content: space-between;
+    width: 43%;
+    margin-left: 50px;
+    margin-bottom: 5px;
+}
+
+.accounts_sect_middle_banner>div:first-child span {
+    color: #979797;
+    font-size: 1.2em;
+}
+
+.accounts_sect_middle_banner>div:first-child button {
+    background-color: #00ADB9;
+    color: white;
+    font-size: 1em;
+    border: 1px solid;
+    border-radius: 5px;
+    text-align: center;
+    height: 30px;
+    width: 80px;
+}
+
 .accounts_section1,
 .accounts_section2 {
     max-width: 1270px;
@@ -3161,9 +3186,9 @@ p.price_bottomText {
     align-items: center;
 }
 
-.main_info_swal .swal-container--sub:last-child {
+/* .main_info_swal .swal-container--sub:last-child {
     margin-top: 22px;
-}
+} */
 
 .search_master .swal2-content #swal2-content>#main {
     display: flex;
@@ -3199,6 +3224,12 @@ p.price_bottomText {
 .search_master .swal2-content #swal2-content>#main #filtered {
     height: 350px;
     flex-direction: column;
+    text-align: center;
+}
+
+.search_master .swal2-content #swal2-content>#main #filtered .filtered_value:hover {
+    color: #00AD89;
+    cursor: pointer;
 }
 
 .search_master .swal2-content #swal2-content>#main #filter {
@@ -3216,12 +3247,7 @@ p.price_bottomText {
     cursor: pointer;
 }
 
-.accounts_sect_middle_banner>span {
-    font-size: 20px;
-    color: #979797;
-    width: 800px;
-    margin-left: 50px;
-}
+
 
 
 .accounts_sect_middle_banner #service_list_push .service_list_push_child,

@@ -28,7 +28,10 @@ let updated_data = {
     firstName: '',
     lastName: '',
     country: '',
-    phone: ''
+    contact: {
+        phone: '',
+        email: ''
+    }
 };
 
 let updated_links = {
@@ -179,7 +182,16 @@ $(document).on('click', '#edit_main', e => {
         <div class="swal-container--sub">
         <div class="swal-container--sub_1">Phone Number</div>
         <div class="swal-container--sub_2"><input type="text" value='${$('#phone_set').text()}' name='Si_phone'/></div>
-get        </div>
+        </div>
+
+        <div class="swal-container--sub">
+        <div class="swal-container--sub_1">Email</div>
+        <div class="swal-container--sub_2">
+        <input type="text" value='${$('#email_set').text()}' name='Si_email'/>
+        </div>
+        </div>
+        
+
         </div> `,
         showCancelButton: true,
         //  allowOutsideClick: false,
@@ -194,10 +206,9 @@ get        </div>
                     Swal.fire({
                         title: 'Information Successfully saved'
                     }).then(e => {
-                        Object.keys(updated_data).forEach(key => {
-                            if (key !== 'firstName' || key !== 'lastName') $('#' + key + '_set').text(updated_data[key]);
-
-                        });
+                        $('#country_set').text(updated_data['country']);
+                        $('#email_set').text(updated_data['contact'].email);
+                        $('#phone_set').text(updated_data['contact'].phone);
                         $('#name_set').text(updated_data['firstName'] + ' ' + updated_data['lastName'])
                     });
                 }
@@ -320,6 +331,7 @@ function showTempChild(e) {
 
 $(document).on('keyup', '.service_list_push_child, .complaint_list_push_child', e => {
     if ((e.which >= 65 && e.which <= 90) || (e.which >= 97 && e.which <= 122) || e.which == 8) showTempChild(e);
+    if (e.which == 46) $(e.target).remove();
 })
 
 function list_click(id, class_name) {
@@ -341,14 +353,26 @@ $(document).on('keypress', '#service_list_push, #complaint_list_push', e => {
     }
 })
 
+$('.nav-btn').on('click', function () {
+    $('.nav_bar').toggleClass('sbar_collapsed');
+    $('.nav-menu2 ul').toggleClass('open_menu');
+});
+
+$(".navbar-btn").click(function () {
+    $(".nav-menu").toggleClass("open");
+});
+
 
 
 $(document).on('change', 'input[name=twitter],input[name=linkedin],input[name=instagram],input[name=facebook]', e => {
     updated_links[e.target.name] = e.target.value.trim();
 })
 
-$(document).on('change', 'input[name=Si_firstName],input[name=Si_lastName],input[name=Si_country],input[name=Si_phone]', e => {
-    updated_data[e.target.name.split('_')[1]] = e.target.value.trim();
+$(document).on('change', 'input[name=Si_firstName],input[name=Si_lastName],input[name=Si_country],input[name=Si_phone],input[name=Si_email]', e => {
+    let key = e.target.name.split('_')[1];
+    if (key === 'email' || key === 'phone') updated_data.contact[key] = e.target.value.trim();
+    else updated_data[key] = e.target.value.trim();
+
 })
 
 $(document).on('change', '#imageUpload', e => {
@@ -390,13 +414,32 @@ $(document).on('click', '#filter', e => {
         data: filter_value
     }).then(response => {
         response.data.forEach(elem => {
-            $('#filtered').append(`<div>${elem.firstName} ${elem.lastName} - ${elem.phone}/${elem.contact}</div>`)
+            $('#filtered').append(`<div class='filtered_value'>
+            ${elem.firstName} ${elem.lastName} / ${elem.contact.email}
+            </div>`)
         })
 
         // console.log(response.data)
     })
 })
 
+$(document).on('click', '#update_services', function () {
+    const childs = $('#service_list_push').children('.service_list_push_child');
+
+    let services_set = new Set();
+    childs.each(function () {
+        if ($(this).text().trim() !== '') services_set.add($(this).text());
+    })
+
+    const arr = Array.from(services_set.values());
+    $.post('api/User/Services', {
+        data: arr.length > 0 ? arr : ''
+    }).then(response => {
+        if (response.updated) Swal.fire({
+            title: 'Information Successfully saved'
+        }).then(e => {});
+    })
+})
 
 $(document).ready(function () {
     //$('#calendar').datapicker();
@@ -404,6 +447,7 @@ $(document).ready(function () {
         dateFormat: "dd/mm/yy",
         onSelect: function (date) {
             Swal.fire({
+                showConfirmButton: false,
                 customClass: {
                     container: 'search_master'
                 },
@@ -437,9 +481,18 @@ $(document).ready(function () {
             else allSocialIcons[index].setAttribute('src', 'images/socialLinks_icon/' + first + '1.png');
         });
 
+
+        if (response.data.services !== '') response.data.services.split(',').forEach(service => {
+            $('#service_list_push').append(`<div 
+            class="service_list_push_child" 
+            contenteditable 
+            style="width:${(service.length+2)*8}px">${service}</div>`)
+        });
+
         $('#name_set').text(response.data.firstName + ' ' + response.data.lastName);
         $('#country_set').text(response.data.country);
-        $('#phone_set').text(response.data.phone);
+        $('#phone_set').text(response.data.contact.phone);
+        $('#email_set').text(response.data.contact.email);
         $('#description_set').text(response.data.description);
 
         $('#linkedin_link_set').text(response.data.socialLinks.linkedin);

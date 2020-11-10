@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
                 $in: req.body.data
             }
         })
-        .select('country firstName lastName phone contact services').then(doc => {
+        .select('country firstName lastName contact').then(doc => {
             console.log(doc.length);
             res.status(200).json({
                 data: doc

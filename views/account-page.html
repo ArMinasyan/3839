@@ -48,6 +48,7 @@
                         <li><a href="">Resources page</a></li>
                         <li><a href="">Therapist Bonds</a></li>
                         <li><a href="">Gifts</a></li>
+                        <li><a href="/logout">LogOut</a></li>
                     </ul>
                 </div>
             </div>
@@ -97,7 +98,7 @@
                             <li> Business Name:<span id="bussinesName_set"></span></li>
                             <li> Country:<span id="country_set"></span></li>
                             <li> Phone Number:<span id="phone_set"></span></li>
-                            <li> Postal Code:<span></span></li>
+                            <li> Email:<span id='email_set'></span></li>
 
                         </ul>
                         <button class="edit_setting" id="edit_main">Edit setting</button>
@@ -171,7 +172,11 @@
 
     </div>
     <div class="accounts_sect_middle_banner">
-        <span>Services</span>
+        <div>
+            <span>Services</span>
+            <button type="button" id="update_services">Apply</button>
+
+        </div>
         <div id="service_list_push" class="list_push"></div>
     </div>
     <div class="accounts_sect4_banner">
