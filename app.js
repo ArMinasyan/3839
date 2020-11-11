@@ -6,7 +6,10 @@ const {
 const body_parser = require('body-parser');
 const cookie_parser = require('cookie-parser');
 const session = require('express-session');
-//const MongoDBStore = require('connect-mongodb-session')(session);
+const csrf = require('csurf');
+const cors = require('cors');
+
+
 
 require('dotenv').config();
 const app = express();
@@ -20,13 +23,15 @@ app.use(express.static(__dirname + '/public'));
 app.use('/profileImages', express.static(__dirname + '/profileImages'));
 app.use('/logoImages', express.static(__dirname + '/logoImages'));
 app.set('views', __dirname + '/views');
-
+app.set('view engine', 'hbs');
 
 
 
 let mongodb_url;
-if (process.env.NODE_ENV.trim() === 'development') mongodb_url = 'mongodb://localhost:27017/3839';
-else {
+if (process.env.NODE_ENV.trim() === 'development') {
+    mongodb_url = 'mongodb://localhost:27017/3839';
+
+} else {
     mongodb_url = process.env.MONGODB_URL;
 
 }
@@ -35,16 +40,12 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     secret: 'afsfsgsg262626267',
-    // store: new MongoDBStore({
-    //     uri: mongodb_url,
-    //     collection: 'session',
-    // }),
     cookie: {
-        //secure: secure_session,
         httpOnly: true,
         sameSite: true,
     }
 }));
+
 
 
 mongoose.connect(mongodb_url, {
@@ -66,29 +67,29 @@ app.use(body_parser.urlencoded({
 }));
 app.use(cookie_parser());
 
-
-
 const Auth = require('./routes/Auth');
 const User = require('./routes/User');
-
-app.use('/api', [Auth, User]);
-
-const cors = require('cors');
-
-cors({
-    origin: [
-        'https://test-3839.herokuapp.com/'
-    ]
-});
 
 const {
     VerifyToken
 } = require('./helpers/Helper.Token');
 
+const csrfDefender = csrf({
+    cookie: {
+        httpOnly: true,
+        sameSite: true
+    }
+});
+
+app.use('/api', csrfDefender, VerifyToken, [User]);
+app.use(csrfDefender, Auth);
 
 
-
-
+app.use(cors({
+    origin: [
+        'https://id-3839.herokuapp.com/'
+    ]
+}));
 
 const {
     createHmac
@@ -97,21 +98,29 @@ const {
 
 ///Main GET Routes
 
+app.get('/csrf', (req, res, next) => {
+    res.status(200).json({
+        csrf: req.csrfToken()
+    });
+})
+
 app.get('/', (req, res, next) => {
     if (req.session.user) res.status(200).redirect('/user');
-    res.sendFile(__dirname + '/views/index.html');
+    else res.sendFile(__dirname + '/views/index.html');
+
 })
 
-app.get('/sign_up', (req, res, next) => {
-    res.sendFile(__dirname + '/views/sign-like-therapist.html');
+app.get('/sign_in', (req, res, next) => {
+    res.status(200).sendFile(__dirname + '/views/sign-like-therapist.html');
 })
 
-app.get('/user', VerifyToken, (req, res, next) => {
-    res.sendFile(__dirname + '/views/account-page.html');
+app.get('/user', csrfDefender, VerifyToken, (req, res, next) => {
+    res.status(200).sendFile(__dirname + '/views/account-page.html');
 })
 
 app.get('/logout', function (req, res) {
     res.clearCookie('token');
+    res.clearCookie('_csrf');
     res.clearCookie('connect.sid');
     req.session.destroy();
     res.status(200).redirect('/');
@@ -198,6 +207,6 @@ app.get('/testAdd', (req, res, next) => {
     })
 
 })
-app.listen(process.env.PORT || 8080, () => {
+HttpServer.listen(process.env.PORT || 8080, () => {
     console.log('localhost:8080');
 })

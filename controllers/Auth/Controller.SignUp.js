@@ -18,8 +18,6 @@ module.exports = (req, res, next) => {
         err: valid.array()[0]
     });
     else {
-        console.log(req.body);
-
         const {
             email,
             password,

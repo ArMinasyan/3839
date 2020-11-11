@@ -18,7 +18,7 @@ $(document).on('click', '#send_pin_email, #send_pin_phone', function (e) {
 
     let part = e.target.id.split('_')[2];
 
-    $.post('api/auth/send_pin_' + part, {
+    $.post('auth/send_pin_' + part, {
         [part]: $('#reg_' + part).val()
     }).then(res => {
 
@@ -36,7 +36,7 @@ $(document).on('click', '#send_pin_email, #send_pin_phone', function (e) {
 })
 
 function emailVerify(stepContentNext) {
-    $.post('api/auth/verify_pin_email', {
+    $.post('auth/verify_pin_email', {
         email: $('#reg_email').val(),
         pin: $('#email_pin').val()
     }).then(res => {
@@ -47,7 +47,7 @@ function emailVerify(stepContentNext) {
             $(`#email_pin_error`).text('Incorrect verification code.');
             $(`#email_pin_error`).css('display', 'block');
         } else {
-            valid.email=true;
+            valid.email = true;
             $('#step_1').attr('hidden', true);
             $('#step_2').removeAttr('hidden');
             $('.step-item').eq(stepContentNext).addClass('step-item-active');
@@ -56,7 +56,7 @@ function emailVerify(stepContentNext) {
 }
 
 function phoneVerify(data) {
-    $.post('api/auth/verify_pin_phone', {
+    $.post('auth/verify_pin_phone', {
         phone: $('#reg_phone').val(),
         pin: $('#phone_pin').val()
     }).then(res => {
@@ -70,7 +70,7 @@ function phoneVerify(data) {
             $.ajax({
                 method: 'POST',
                 data: data,
-                url: '/api/auth/sign_up',
+                url: '/auth/sign_up',
                 success: function (res) {
                     if (res.err) {
                         last_field = `#${res.err.param}_error`;
@@ -98,6 +98,7 @@ $(document).on('click', '#show_signup', e => {
 
 })
 $(document).ready(function () {
+
     let data = {
         username: "",
         email: "",
@@ -114,12 +115,24 @@ $(document).ready(function () {
     let last_field = '#username_error';
     let reg = false;
 
+    $.get('/csrf').then(response => {
+        $.ajaxSetup({
+            headers: {
+                'CSRF-Token': response.csrf
+            }
+        });
+    })
+
+
     $(document).on('click', '#signin', e => {
-        $.post('api/auth/sign_in', {
+        $.post('auth/sign_in', {
             email: $('#log_email').val(),
             password: $('#log_password').val()
         }).then(res => {
-            if (res.login) window.location.href = '/user';
+            if (res.login) {
+
+                window.location.href = '/user'
+            };
             if (res.err) $('#signin_error').text(res.err);
         })
     })
@@ -148,10 +161,9 @@ $(document).ready(function () {
             $.ajax({
                 method: 'POST',
                 data: data,
-                url: '/api/auth/sign_up',
+                url: '/auth/sign_up',
                 success: function (res) {
                     if (res.err) {
-
                         last_field = `#${res.err.param}_error`;
                         $(`#${res.err.param}_error`).text(res.err.msg);
                         $(`#${res.err.param}_error`).css('display', 'block');

@@ -1,8 +1,6 @@
 const upload = require('../../helpers/Helper.Upload');
 
 module.exports.InsertProfileImg = (req, res, next) => {
-    // upload.single('profile_img');
-    //console.log(req.error);
     if (req.session.user.error) res.status(200).json({
         err: req.session.user.error
     });

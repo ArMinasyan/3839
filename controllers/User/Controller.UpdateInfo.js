@@ -2,7 +2,6 @@ const UserPageData = require('../../models/UserPageData');
 
 
 module.exports.Main = async (req, res, next) => {
-    console.log(req.body.updated_data);
     UserPageData.findOneAndUpdate({
             user_id: req.session.user.id
         },
@@ -42,6 +41,7 @@ module.exports.ChangeSocialLink = async (req, res, next) => {
 
 module.exports.Services = async (req, res, next) => {
 
+    
     UserPageData.findOneAndUpdate({
         user_id: req.session.user.id
     }, {

@@ -10,7 +10,9 @@ const {
     VerifyToken
 } = require('../../helpers/Helper.Token');
 
+
 module.exports = async (req, res, next) => {
+
     const valid = validationResult(req);
     if (!valid.isEmpty()) res.json({
         err: valid.array()[0].msg
@@ -37,7 +39,8 @@ module.exports = async (req, res, next) => {
                         SameSite: 'Strict'
                     });
                     res.status(200).json({
-                        login: true
+                        login: true,
+
                     });
                 } else res.status(200).json({
                     err: 'Incorrect email and/or password'

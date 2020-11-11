@@ -14,9 +14,7 @@ const {
     InsertProfileImg,
     InsertLogoImg
 } = require('../controllers/User/Controller.InsertProfileImg');
-const {
-    VerifyToken
-} = require('../helpers/Helper.Token');
+
 
 const {
     profile,
@@ -25,12 +23,14 @@ const {
 
 const route = Router();
 
-route.get('/User/MainData', VerifyToken, GetMainData);
-route.post('/User/UpdateMainInfo', VerifyToken, Main);
-route.post('/User/UpdateDescription', VerifyToken, ChangeDescription);
-route.post('/User/UpdateSocialLinks', VerifyToken, ChangeSocialLink);
-route.post('/User/InsertProfileImg', [VerifyToken, profile.single('profileImage')], InsertProfileImg);
-route.post('/User/InsertLogoImg', [VerifyToken, logo.single('logoImage')], InsertLogoImg);
-route.post('/User/Services', [VerifyToken], Services);
-route.post('/User/Filter', VerifyToken, FilterData)
+
+
+route.get('/User/MainData', GetMainData);
+route.post('/User/UpdateMainInfo', Main);
+route.post('/User/UpdateDescription', ChangeDescription);
+route.post('/User/UpdateSocialLinks', ChangeSocialLink);
+route.post('/User/InsertProfileImg', profile.single('profileImage'), InsertProfileImg);
+route.post('/User/InsertLogoImg', logo.single('logoImage'), InsertLogoImg);
+route.post('/User/Services', Services);
+route.post('/User/Filter', FilterData)
 module.exports = route;

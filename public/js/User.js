@@ -307,7 +307,7 @@ $(document).on('click', '.temp_child', e => {
     const name = $(e.target).attr('name');
     const last_child = $('#' + name).children('.' + name + '_child').last();
 
-    console.log(e.target.innerText.length);
+
     last_child.css('width', (e.target.innerText.length + 2) * 8);
     last_child.text(e.target.innerText);
 
@@ -405,7 +405,6 @@ $(document).on('change', '#imageUpload', e => {
 $(document).on('click', '#filter', e => {
     let filter_value = [];
     const childs = $('#complaint_list_push').children();
-    console.log(childs);
     for (let i = 0; i < childs.length; i++) {
         if (childs[i].innerText.trim() !== '') filter_value.push(childs[i].innerText);
     }
@@ -418,8 +417,6 @@ $(document).on('click', '#filter', e => {
             ${elem.firstName} ${elem.lastName} / ${elem.contact.email}
             </div>`)
         })
-
-        // console.log(response.data)
     })
 })
 
@@ -437,12 +434,20 @@ $(document).on('click', '#update_services', function () {
     }).then(response => {
         if (response.updated) Swal.fire({
             title: 'Information Successfully saved'
-        }).then(e => {});
+        });
     })
 })
 
 $(document).ready(function () {
     //$('#calendar').datapicker();
+    $.get('/csrf').then(response => {
+        $.ajaxSetup({
+            headers: {
+                'CSRF-Token': response.csrf
+            }
+        });
+    })
+
     $("#calendar").datepicker({
         dateFormat: "dd/mm/yy",
         onSelect: function (date) {
@@ -471,6 +476,9 @@ $(document).ready(function () {
         Object.keys(updated_data).forEach(key => {
             updated_data[key] = response.data[key]
         });
+
+
+
 
         Object.keys(updated_links).forEach((key, index) => {
             updated_links[key] = response.data.socialLinks[key];
