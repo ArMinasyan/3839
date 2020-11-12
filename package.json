@@ -20,6 +20,7 @@
     "cors": "^2.8.5",
     "crypto-random-string": "^3.3.0",
     "csurf": "^1.11.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.6.1",
@@ -31,7 +32,5 @@
     "nodemailer": "^6.4.14",
     "twilio": "^3.50.0"
   },
-  "devDependencies": {
-    "dotenv": "^8.2.0"
-  }
+  "devDependencies": {}
 }
