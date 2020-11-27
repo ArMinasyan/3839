@@ -624,8 +624,7 @@ $(document).ready(function () {
         $('#twitter_link_set').text(response.data.socialLinks.twitter);
 
         if (response.data.profileImgPath !== '') {
-
-remove            $('#profileimg_set').attr('src', '/ProfileImages/' + response.data.profileImgPath);
+            $('#profileimg_set').attr('src', '/ProfileImages/' + response.data.profileImgPath);
             $('.profileAvatar').css('border', 'none');
         }
         if (response.data.logoImgPath !== '') {
