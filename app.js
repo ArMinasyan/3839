@@ -8,7 +8,7 @@ const cookie_parser = require('cookie-parser');
 const session = require('express-session');
 const csrf = require('csurf');
 const cors = require('cors');
-
+const helmet = require('helmet');
 
 
 require('dotenv').config();
@@ -46,7 +46,7 @@ app.use(session({
     }
 }));
 
-
+app.use(helmet());
 
 mongoose.connect(mongodb_url, {
     useNewUrlParser: true,
@@ -143,7 +143,7 @@ app.post('/test', VerifyToken, (req, res, next) => {
 ////_________________________STRIPE_____________________________
 
 app.get('/create_stripe_customer/:email', (req, res, next) => {
-    
+
     stripe.customers.create({ email: req.params.email }).then(created => {
         console.log('-----------------------------', created);
     })

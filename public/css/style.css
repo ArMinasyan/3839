@@ -2416,14 +2416,14 @@ p.price_bottomText {
 .accounts_sect_middle_banner>div:first-child {
     display: flex;
     justify-content: space-between;
-    width: 43%;
-    margin-left: 50px;
+    width: 65%;
     margin-bottom: 5px;
 }
 
 .accounts_sect_middle_banner>div:first-child span {
     color: #979797;
     font-size: 1.2em;
+    margin-left: 10px;
 }
 
 .accounts_sect_middle_banner>div:first-child button {
@@ -3312,7 +3312,7 @@ width: 45%;
     width: 65%;
     height: 200px;
     border-radius: 7px;
-    margin-left: 50px;
+    /* margin-left: 50px; */
     overflow-y: auto;
 }
 
