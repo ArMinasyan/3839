@@ -1,0 +1,8 @@
+{
+    "development": {
+        "mongodb_url": "mongodb://localhost:27017/3839"
+    },
+    "production": {
+        "mongodb_url": "mongodb+srv://user2:1ruJMgRFhsaUv3Sf@cluster0.lwgpy.mongodb.net/3839"
+    }
+}
