@@ -142,9 +142,6 @@ app.post('/test', VerifyToken, (req, res, next) => {
 
 ////_________________________STRIPE_____________________________
 
-
-
-
 app.get('/create_stripe_customer/:email', (req, res, next) => {
     
     stripe.customers.create({ email: req.params.email }).then(created => {

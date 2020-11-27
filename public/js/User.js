@@ -625,11 +625,11 @@ $(document).ready(function () {
 
         if (response.data.profileImgPath !== '') {
 
-            $('#profileimg_set').attr('src', location.host + '/ProfileImages/' + response.data.profileImgPath);
+remove            $('#profileimg_set').attr('src', '/ProfileImages/' + response.data.profileImgPath);
             $('.profileAvatar').css('border', 'none');
         }
         if (response.data.logoImgPath !== '') {
-            $('#logoimg_set').attr('src', location.host + '/LogoImages/' + response.data.logoImgPath);
+            $('#logoimg_set').attr('src', '/LogoImages/' + response.data.logoImgPath);
             $('.logoAvatar').css('border', 'none');
         }
     })
