@@ -102,20 +102,26 @@ app.get('/csrf', (req, res, next) => {
     res.status(200).json({
         csrf: req.csrfToken()
     });
+
+
 })
 
 app.get('/', (req, res, next) => {
-    if (req.session.user) res.status(200).redirect('/user');
+    if (req.session.user) res.status(200).redirect(req.session.user.path);
     else res.sendFile(__dirname + '/views/index.html');
-
 })
 
 app.get('/sign_in', (req, res, next) => {
     res.status(200).sendFile(__dirname + '/views/sign-like-therapist.html');
 })
 
-app.get('/user', csrfDefender, VerifyToken, (req, res, next) => {
-    res.status(200).sendFile(__dirname + '/views/account-page.html');
+app.get('/customer', csrfDefender, VerifyToken, (req, res, next) => {
+    if (req.session.user.path == req.path) res.status(200).send('Comming soon...'); else res.redirect(req.session.user.path);
+})
+
+app.get('/therapist', csrfDefender, VerifyToken, (req, res, next) => {
+    if (req.session.user.path == req.path) res.status(200).sendFile(__dirname + '/views/account-page.html');
+    else res.redirect(req.session.user.path);
 })
 
 app.get('/logout', function (req, res) {
@@ -134,7 +140,60 @@ app.post('/test', VerifyToken, (req, res, next) => {
     res.send('Login');
 })
 
+////_________________________STRIPE_____________________________
 
+
+
+
+app.get('/create_stripe_customer/:email', (req, res, next) => {
+    
+    stripe.customers.create({ email: req.params.email }).then(created => {
+        console.log('-----------------------------', created);
+    })
+})
+
+
+// stripe.customers.createSource('123',{
+//     source:{
+//         car
+//     }
+// })
+
+app.post('/add_card_stripe', async (req, res) => {
+
+
+    // const cardDetails = {
+    //     number: req.body.number,
+    //     exp_month: req.body.exp_month,
+    //     exp_year: req.body.exp_year,
+    //     cvc: req.body.cvc,
+    //     name: req.body.name
+    // }
+    //cus_IOpWeXSIgLP9RH
+    //tok_1Ho2OkAiy3fjkRxKdrJahj9Z
+    //tok_1Ho2Q1Aiy3fjkRxKPAN4wrMU
+    // const cardToken = await stripe.tokens.create({
+    //     card: cardDetails
+    // })
+
+    const card = await stripe.customers.createSource(req.params.id, { source: req.body.token_id });
+
+
+    console.log('----------------------------------', card)
+})
+// app.get('/create_stripe_invoice/:customer_id', async (req, res, next) => {
+//     const invoice = await stripe.invoices.create({
+
+//         customer: req.params.customer_id,
+//         metadata: {
+//             am
+//         }
+//     });
+
+//     console.log(invoice);
+// })
+
+//////_____________________________________-------------------------
 app.get('/testHash/:value', (req, res, next) => {
     res.send(createHmac('SHA256', '7fd04df92f63').update(req.params.value).digest('hex'))
 })

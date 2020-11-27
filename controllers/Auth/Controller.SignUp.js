@@ -27,12 +27,15 @@ module.exports = (req, res, next) => {
             age,
             services,
             firstName,
-            lastName
+            lastName,
+            customer
         } = req.body;
 
+        
         const user = new User({
             email: email,
             password: CreateHash(password),
+            customer: customer
         });
         user.save(err => {
             if (!err) {
@@ -47,7 +50,7 @@ module.exports = (req, res, next) => {
                     country: country,
                     bussines_name: bussines_name,
                     age: age,
-                    services: services
+                    services: ''
                 })
                 userPageData.save(err => {
                     if (!err) {

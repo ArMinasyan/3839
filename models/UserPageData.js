@@ -7,6 +7,7 @@ const {
 module.exports = model('UserPageData', new Schema({
     user_id: SchemaTypes.ObjectId,
     isClient: Boolean,
+    stripe_customer_id: String,
     firstName: {
         type: String,
         default: ''

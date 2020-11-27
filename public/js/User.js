@@ -24,6 +24,7 @@ $(document).on('change', '#imageUpload2', e => {
     })
 })
 
+
 let updated_data = {
     firstName: '',
     lastName: '',
@@ -96,6 +97,112 @@ $(document).on('click', '#cancel_descriptionChange', e => {
     $('#description_set').text(old_desc);
 })
 
+
+const stripe = Stripe('pk_test_f67t2l8hFzw9JDQmbtmLGrgL00E2RxpLks');
+const elements = stripe.elements();
+const style = {
+    base: {
+        margin: '20px auto',
+        color: '#00ADB9',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '1.1em',
+        '::placeholder': {
+            color: '#00ADB9'
+        }
+    },
+    invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+    }
+};
+
+// Create an instance of the card Element.
+const cardDetails_Swal = () => {
+    return $.get('/api/User/CardsList').then(response => {
+        Swal.fire({
+            title: 'Card Details',
+            customClass: {
+                container: 'card_swal'
+            },
+            preConfirm: function () { return false; },
+            html: '<div id="card_list"></div>'
+        })
+
+        $('.card_swal .swal2-actions').append('<span id="add_card">Add new card</span>');
+
+        response.forEach(elem => {
+            $('#card_list').append(`<div id='${elem.id}'>
+        <span class="card_details">**** **** **** ${elem.last4}</span>  
+        <span class="card_details">${elem.exp_month < 10 ? '0' + elem.exp_month : elem.exp_month}/${elem.exp_year}</span>
+        <span class="card_details">${elem.brand}</span>
+        <span class="card_details delete_card "name='${elem.id}'>&#10006;</span>
+        </div>`
+            )
+        })
+    })
+}
+const card = elements.create('card', { style: style });
+
+$(document).on('click', '#card_details', e => {
+    cardDetails_Swal();
+})
+
+
+$(document).on('click', '.delete_card', e => {
+    $.post('/api/User/DeleteCard', { id: $(e.target).attr('name') }).then(response => {
+        if (response.deleted) $(e.target).parent().remove();
+    });
+})
+
+$(document).on('click', '#add_card', e => {
+    Swal.fire({
+        title: 'Add Card',
+        customClass: {
+            container: 'card_swal'
+        },
+        html: '<input type="text" id="card_name"  placeholder="Name On Card"/>' +
+            '<div id="card_container"></div>' +
+            '<div id="card-errors"></div>',
+
+        preConfirm: function (e) {
+            if ($('#card_name').val() === '') document.getElementById('card-errors').textContent = 'Name field is required'; else
+                if ($('#card_name').val().split(' ').length != 2) document.getElementById('card-errors').textContent = 'Enter valid name';
+                else {
+                    stripe.createToken(card, { name: $('#card_name').val() }).then(result => {
+                        $.post('api/User/AddCard', { token_id: result.token.id }).then(response => {
+                            if (response.data) {
+                                const elem = response.data;
+                                $('#card_list').append(`<div id='${elem.id}'>
+                                        <span>**** **** **** ${elem.last4}</span>  
+                                        <span>${elem.exp_month < 10 ? '0' + elem.exp_month : elem.exp_month}/${elem.exp_year}</span>
+                                        <span>${elem.brand}</span>
+                                        <span name='${elem.id}' class='delete_card'>&#10006;</span>
+                                        </div>`
+                                )
+                            }
+                            cardDetails_Swal();
+                        })
+                    })
+                }
+            return false;
+        }
+
+    })
+    card.mount('#card_container');
+})
+
+
+
+card.on('change', function (event) {
+
+    let displayError = document.getElementById('card-errors');
+    if (event.error) {
+        displayError.textContent = event.error.message;
+    } else {
+        displayError.textContent = '';
+    }
+});
 $(document).on('click', '#edit_links', e => {
     Swal.fire({
         title: 'Edit soccial links',
@@ -122,7 +229,6 @@ $(document).on('click', '#edit_links', e => {
         </div>
         </div>`,
         showCancelButton: true,
-        // allowOutsideClick: false,
         confirmButtonText: 'Save',
     }).then(e => {
         if (e.isConfirmed) {
@@ -168,7 +274,7 @@ $(document).on('click', '#edit_main', e => {
         <div class="swal-container--sub">
         <div class="swal-container--sub_1">Last Name</div>
         <div class="swal-container--sub_2">
-        <input type="text" value='${$('#name_set').text().split(' ')[1]}' name='Si_lastName' />
+        <input type="text" value='${$('#name_set').text().split(' ')[1] || ''}' name='Si_lastName' />
         </div>
         </div>
 
@@ -308,7 +414,7 @@ $(document).on('click', '.temp_child', e => {
     const last_child = $('#' + name).children('.' + name + '_child').last();
 
 
-    last_child.css('width', (e.target.innerText.length + 2) * 8);
+    // last_child.css('width', (e.target.innerText.length + 2) * 8);
     last_child.text(e.target.innerText);
 
     $('.temp_child').remove();
@@ -438,6 +544,16 @@ $(document).on('click', '#update_services', function () {
     })
 })
 
+
+$(document).on('click', '#export', e => {
+    $.get('api/User/CSVData').then(response => {
+        var hiddenElement = document.createElement('a');
+        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(response.csv);
+        hiddenElement.target = '_blank';
+        hiddenElement.download = response.filename + '.csv';
+        hiddenElement.click();
+    });
+})
 $(document).ready(function () {
     //$('#calendar').datapicker();
     $.get('/csrf').then(response => {
@@ -493,8 +609,7 @@ $(document).ready(function () {
         if (response.data.services !== '') response.data.services.split(',').forEach(service => {
             $('#service_list_push').append(`<div 
             class="service_list_push_child" 
-            contenteditable 
-            style="width:${(service.length+2)*8}px">${service}</div>`)
+            contenteditable >${service}</div>`)
         });
 
         $('#name_set').text(response.data.firstName + ' ' + response.data.lastName);
@@ -509,11 +624,12 @@ $(document).ready(function () {
         $('#twitter_link_set').text(response.data.socialLinks.twitter);
 
         if (response.data.profileImgPath !== '') {
-            $('#profileimg_set').attr('src', 'ProfileImages/' + response.data.profileImgPath);
+
+            $('#profileimg_set').attr('src', location.host + '/ProfileImages/' + response.data.profileImgPath);
             $('.profileAvatar').css('border', 'none');
         }
         if (response.data.logoImgPath !== '') {
-            $('#logoimg_set').attr('src', 'LogoImages/' + response.data.logoImgPath);
+            $('#logoimg_set').attr('src', location.host + '/LogoImages/' + response.data.logoImgPath);
             $('.logoAvatar').css('border', 'none');
         }
     })

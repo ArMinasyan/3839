@@ -4,6 +4,8 @@ const {
 
 const GetMainData = require('../controllers/User/Controller.GetMainData');
 const FilterData = require('../controllers/User/Controller.FilterData');
+const CSVData = require('../controllers/User/Controller.CSVData');
+const { addCard, getCardList, deleteCard } = require('../controllers/User/Controller.Stripe');
 const {
     Main,
     ChangeDescription,
@@ -32,5 +34,11 @@ route.post('/User/UpdateSocialLinks', ChangeSocialLink);
 route.post('/User/InsertProfileImg', profile.single('profileImage'), InsertProfileImg);
 route.post('/User/InsertLogoImg', logo.single('logoImage'), InsertLogoImg);
 route.post('/User/Services', Services);
-route.post('/User/Filter', FilterData)
+route.post('/User/Filter', FilterData);
+route.get('/User/CSVData', CSVData);
+
+route.post('/User/AddCard', addCard);
+route.get('/User/CardsList', getCardList);
+route.post('/User/DeleteCard', deleteCard);
+
 module.exports = route;

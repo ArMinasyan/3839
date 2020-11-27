@@ -22,7 +22,8 @@ module.exports.VerifyPhonePin = async (req, res, next) => {
         const code_state = await VerifyPinCode(req.body.phone, req.body.pin);
         res.status(200).json({
             type: 'phone',
-            valid: code_state.valid
+            valid: code_state.valid,
+            
         })
     }
 }

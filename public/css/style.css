@@ -654,6 +654,8 @@ footer .footer_banner {
     margin: 0 auto;
 }
 
+
+
 .startPage_body .loginContainer .input_container button {
     padding-left: 0;
     font-family: "SFProDisplay-Bold";
@@ -719,6 +721,22 @@ footer .footer_banner {
     width: 456px;
     /* justify-content: center; */
     display: block;
+}
+
+.input_container .control{
+    display: flex;
+    height: 40px;
+}
+.input_container .control label{
+    
+    width: 50%;
+    color: #AAAAAA;
+
+}
+.input_container .control label input[type="radio"]{
+    width: 8%;
+    height: 12px;
+  margin-left: 10px;
 }
 
 .startPage_body h4 span {
@@ -2484,6 +2502,90 @@ p.price_bottomText {
     margin-right: 20px;
 }
 
+.card_swal .swal2-actions .swal2-confirm{
+    background-color: #00AD89;
+    width: 25%;
+}
+
+.card_swal .swal2-content #card_list{
+    /* border: 1px solid; */
+    height: 220px;
+    overflow-y: auto;
+}
+
+.card_swal .swal2-content #card_name{
+    width:100%;
+color: #00ADB9;
+font-size: 1.1em;
+border: none;
+border-bottom: 1px solid #979797;
+}
+
+.card_swal .swal2-modal{
+    width: 720px;
+}
+.card_swal .swal2-content  #card_list .card_details{
+    /* border: 1px solid black; */
+    width:25%;
+}
+
+.card_swal .swal2-content  #card_list .card_details:first-child{
+    /* border: 1px solid black; */
+    width:40%;
+}
+.card_swal .swal2-content #card_list .card_details:last-child{
+    width: 10%;
+}
+.card_swal .swal2-content #card_name::placeholder{
+    
+color: #00ADB9;
+font-size: 1.1em;
+}
+
+.card_swal .swal2-content #card_container{
+    margin-top: 20px;
+}
+
+.card_swal .swal2-actions #add_card{
+    color: #00AD89;
+    margin-left: 20px;
+    font-size: 1.2em;
+}
+
+.card_swal .swal2-actions #add_card:hover{
+    cursor: pointer;
+}
+
+.card_swal .swal2-content #card_list div {
+    border-bottom: 1px solid #E1E1E1;
+    height: 30px;
+    color: #00AD89;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card_swal .swal2-content #card_list div span:first{
+width: 45%;
+}
+.card_swal .swal2-content #card_list div .delete_card:hover{
+    cursor: pointer;
+}
+/* .card_swal .card_name{
+    font-size: 1.1em;
+    width: 100%;
+    color:#00ADB9;
+     margin-bottom: 15px; 
+    border: none;
+    border-bottom: 1px solid #00AD89;
+    padding-left: 10px;
+} */
+/* .card_swal .card_name::placeholder{
+    color:#00ADB9;
+} */
+#card-errors{
+    margin-top: 10px;
+    color: red;
+}
 .user_info ul {
     margin-bottom: 0;
     padding-left: 0;
@@ -2508,7 +2610,9 @@ p.price_bottomText {
     line-height: 34px;
     color: #2A9AD9;
     padding-left: 0;
-}
+    width: 100%;
+    text-align: left
+} 
 
 .edit_setting .description_change_button {
     border: 0;
@@ -3202,9 +3306,10 @@ p.price_bottomText {
 .search_master .swal2-content #swal2-content>#main #filtered {
     display: flex;
     align-items: flex-start;
+    align-content: baseline;
     flex-wrap: wrap;
     border: 1px solid #B5B5B5;
-    width: 800px;
+    width: 65%;
     height: 200px;
     border-radius: 7px;
     margin-left: 50px;
@@ -3257,11 +3362,13 @@ p.price_bottomText {
     color: #00AD89;
     border-radius: 7px;
     border: 1px solid #00AD89;
-    width: 100px;
+    min-width: 75px;
     height: 30px;
     text-align: center;
     margin: 5px 5px;
     font-size: 1em;
+    padding: 0px 10px;
+    white-space: nowrap;
 }
 
 

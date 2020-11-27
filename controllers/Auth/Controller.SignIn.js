@@ -33,14 +33,15 @@ module.exports = async (req, res, next) => {
                 if (VerifyHash(password, doc.password)) {
                     res.cookie('token', CreateToken({
                         email: doc.email,
-                        id: doc._id
+                        id: doc._id,
+                        path: doc.customer ? '/customer' : '/therapist'
                     }), {
                         httpOnly: true,
                         SameSite: 'Strict'
                     });
                     res.status(200).json({
                         login: true,
-
+                        path: doc.customer ? 'customer' : 'therapist',
                     });
                 } else res.status(200).json({
                     err: 'Incorrect email and/or password'

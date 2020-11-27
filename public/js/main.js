@@ -78,7 +78,7 @@ function phoneVerify(data) {
                         $(`#${res.err.param}_error`).css('display', 'block');
 
                     } else {
-                        window.location.href = '/user';
+                        window.location.href = data.customer?'/customer':'/therapist';
                     }
                 }
             })
@@ -109,7 +109,8 @@ $(document).ready(function () {
         firstName: "",
         lastName: "",
         phone: "",
-        phone_pin: ""
+        phone_pin: "",
+        customer:true
     };
 
     let last_field = '#username_error';
@@ -131,13 +132,16 @@ $(document).ready(function () {
         }).then(res => {
             if (res.login) {
 
-                window.location.href = '/user'
+                window.location.href = res.path
             };
             if (res.err) $('#signin_error').text(res.err);
         })
     })
 
-
+    let _isCustomer=true;
+$(document).on('change','.type_radio',e=>{
+  _isCustomer=e.target.value;
+})
     $(document).on('click', '#next, #reg_btn', function (e) {
 
         $(last_field).text('');
@@ -151,6 +155,7 @@ $(document).ready(function () {
             data[key] = $(`input[name=${key}]`).val();
         })
 
+        data.customer=_isCustomer;
 
 
 
