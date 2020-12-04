@@ -25,7 +25,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 
 
-const development = false;
+const development = true;
 let mongodb_url;
 if (development) {
     mongodb_url = 'mongodb://localhost:27017/3839';
