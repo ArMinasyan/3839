@@ -17,7 +17,7 @@ $(document).on('change', '#imageUpload2', e => {
                 closeOnClickOutside: false
             });
             else {
-                $('#profileimg_set').attr('src', 'ProfileImages/' + response.profile_img);
+                $('#profileimg_set').attr('src', 'https://therapybubbleimages.fra1.digitaloceanspaces.com/ProfileImages/' + response.profile_img);
                 $('.logoAvatar').css('border', 'none');
             }
         }
@@ -499,7 +499,7 @@ $(document).on('change', '#imageUpload', e => {
                 closeOnClickOutside: false
             });
             else {
-                $('#logoimg_set').attr('src', 'LogoImages/' + response.logo_img);
+                $('#logoimg_set').attr('src', 'https://therapybubbleimages.fra1.digitaloceanspaces.com/LogoImages/' + response.logo_img);
                 $('.logoAvatar').css('border', 'none');
             }
 
@@ -624,11 +624,11 @@ $(document).ready(function () {
         $('#twitter_link_set').text(response.data.socialLinks.twitter);
 
         if (response.data.profileImgPath !== '') {
-            $('#profileimg_set').attr('src', '/ProfileImages/' + response.data.profileImgPath);
+            $('#profileimg_set').attr('src', 'https://therapybubbleimages.fra1.digitaloceanspaces.com/ProfileImages/' + response.data.profileImgPath);
             $('.profileAvatar').css('border', 'none');
         }
         if (response.data.logoImgPath !== '') {
-            $('#logoimg_set').attr('src', '/LogoImages/' + response.data.logoImgPath);
+            $('#logoimg_set').attr('src', 'https://therapybubbleimages.fra1.digitaloceanspaces.com/LogoImages/' + response.data.logoImgPath);
             $('.logoAvatar').css('border', 'none');
         }
     })

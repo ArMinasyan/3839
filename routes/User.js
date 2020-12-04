@@ -18,10 +18,7 @@ const {
 } = require('../controllers/User/Controller.InsertProfileImg');
 
 
-const {
-    profile,
-    logo
-} = require('../helpers/Helper.Upload');
+const { profileImage, logoImage } = require('../helpers/Helper.Upload');
 
 const route = Router();
 
@@ -31,8 +28,8 @@ route.get('/User/MainData', GetMainData);
 route.post('/User/UpdateMainInfo', Main);
 route.post('/User/UpdateDescription', ChangeDescription);
 route.post('/User/UpdateSocialLinks', ChangeSocialLink);
-route.post('/User/InsertProfileImg', profile.single('profileImage'), InsertProfileImg);
-route.post('/User/InsertLogoImg', logo.single('logoImage'), InsertLogoImg);
+route.post('/User/InsertProfileImg', profileImage.single('profileImage'), InsertProfileImg);
+route.post('/User/InsertLogoImg', logoImage.single('logoImage'), InsertLogoImg);
 route.post('/User/Services', Services);
 route.post('/User/Filter', FilterData);
 route.get('/User/CSVData', CSVData);
