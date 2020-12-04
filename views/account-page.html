@@ -48,7 +48,7 @@
                         <li><a href="">Resources page</a></li>
                         <li><a href="">Therapist Bonds</a></li>
                         <li><a href="">Gifts</a></li>
-                        <li><a id="export" >Export Data</a></li>
+                        <li><a id="export">Export Data</a></li>
                         <li><a href="/logout">Log Out</a></li>
                     </ul>
                 </div>
@@ -106,7 +106,7 @@
                             <button class="edit_setting" id="edit_main">Edit setting</button>
                             <button class="edit_setting" id="card_details">Cards details</button>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -189,29 +189,48 @@
                 <div class="accounts_sect4_item">
                     <h3>Create an invoice</h3>
                     <form>
-                        <div class="input_container">
-                            <input type="text" placeholder="Name of your customer">
+                        <div style="padding: 0px 20px ;">
+                            <div class="input_container">
+                                <input type="text" placeholder="Name of your customer">
+                            </div>
+                            <div class="input_container">
+                                <input type="text" placeholder="Enter your customer’s email">
+                            </div>
+                            <div class="input_container">
+                                <input type="text" placeholder="Add a description">
+                            </div>
                         </div>
-                        <div class="input_container">
-                            <input type="text" placeholder="Enter your customer’s email">
+
+                        <div class="input_container_line">
+                            LINE ITEMS
                         </div>
-                        <div class="input_container">
-                            <input type="text" placeholder="Add a description">
+                        <div class="input_container_line input_container_line_inner">
+                            Add item...
+                            <img src="images/plus2.png" /> </div>
+                        <div class="input_container_line input_container_line_inner2">
+                            TOTAL
                         </div>
-                        <div class="input_container">
-                            <input type="text" placeholder="0,00 $">
+                        <div class="input_container_lest" style="padding: 25px 20px; background: #F3F3F3;">
+                            <input class="accounts_send_btn" type="submit" value="CANCEL" style="background: #BA5D5D;">
+                            <input class="accounts_send_btn" type="submit" value="SEND">
                         </div>
-                        <input class="accounts_send_btn" type="submit" value="SEND">
+
                     </form>
                 </div>
-                <div class="accounts_sect4_item sect4_item_big">
-                    <h3>iCalendar</h3>
-                    <div id="calendar"></div>
-                    <input class="accounts_send_btn" type="submit" value="Sync">
+
+                <div class="c1">
+                    <div class="accounts_sect4_item sect4_item_big">
+                        <h3>iCalendar</h3>
+                        <div id="calendar"></div>
+                        <input class="accounts_send_btn" type="submit" value="Sync">
+                    </div>
+                    <div class="accounts_sect4_item video_call_item">
+                        <button class="video_call_btn"><img src="images/video-call.svg"></button>
+                    </div>
                 </div>
-                <div class="accounts_sect4_item video_call_item">
-                    <button class="video_call_btn"><img src="images/video-call.svg"></button>
-                </div>
+
+
+
             </div>
         </div>
     </div>
@@ -416,7 +435,7 @@
     </footer>
 
     <script src="https://js.stripe.com/v3/"></script>
-   
+
     <script src="lib/js/jquery-3.3.1.min.js"></script>
 
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>

@@ -2750,12 +2750,13 @@ width: 45%;
 
 .accounts_sect4_items {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    justify-content: center;
+    /* align-items: flex-end; */
 }
 
 .accounts_sect4_item {
-    padding: 40px 20px;
+ /* padding: 15px 20px;  */
+ 
     max-width: 391px;
     width: 100%;
     min-height: 436px;
@@ -2764,10 +2765,73 @@ width: 45%;
     box-sizing: border-box;
     border-radius: 0px 0px 9px 9px;
     text-align: center;
+
+    min-height: 510px;
+    max-height: 510px;
 }
 
-.accounts_sect4_item h3 {
-    margin-bottom: 20px;
+.accounts_sect4_item form{
+    margin-top: 22px;
+}
+
+.accounts_sect4_item h3{
+    text-align: center;
+    color: #028383;
+    margin-top: 10px;
+}
+
+
+.accounts_sect4_item .input_container_line{
+    background: #F3F3F3;
+    height: 48px;
+    width: 100%;
+    margin-top: 15px;
+    text-align: left;
+    padding: 10px 25px;
+    font-weight: bold;
+    color: #6D6D6D;
+    font-size: 1em;
+}
+
+.accounts_sect4_item .input_container_line_inner{
+    padding: 10px 25px;
+    background: none;
+    margin-top: 0px;
+    height: 57px;
+    width: 100%;
+    align-items: center;
+    color: #A1A1A1;
+    border-bottom: 1px solid #F3F3F3;
+    font-size: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+.accounts_sect4_item .input_container_line_inner2{
+    background:none;
+    margin-top: 0px;
+   width: 100%;
+   text-align: left;
+   padding: 10px 30px;
+   color: #A1A1A1;
+   font-size: 1em;
+   color: #000000;
+}
+
+.c1{
+    display: flex;
+    flex-direction: column;
+    width: 391px;
+    margin-left: 10px;
+}
+.accounts_sect4_item .input_container_line_inner img{
+    width: 25px;
+    height: 33px;
+    margin-top: -7px;
+}
+
+.c1 .sect4_item_big h3 {
+     /* margin-bottom: 20px; */
+    margin-top: 10px;
     font-family: "SFProDisplay-Medium";
     font-style: normal;
     font-weight: 500;
@@ -2778,24 +2842,28 @@ width: 45%;
 }
 
 .accounts_sect4_item.sect4_item_big {
-    min-height: 482px;
+    min-height: 410px;
+    max-height: 410px;
+    border-radius: 0;
 }
 
 .accounts_sect4_item.sect4_item_big h3 {
     text-align: center;
+    color: #028383
 }
 
-.accounts_sect4_item.video_call_item {
+.c1 .video_call_item {
+    min-height: 90px;
+    max-height: 90px;
     text-align: center;
     position: relative;
+    margin-top: 10px;
 }
 
 .video_call_btn {
-    position: absolute;
-    bottom: 33px;
     left: 0;
     right: 0;
-    margin: auto;
+    margin: 20px 20px;
 }
 
 .video_call_btn,
@@ -2804,6 +2872,15 @@ width: 45%;
 .video_call_btn:hover {
     background-color: transparent !important;
     border: none !important;
+}
+
+.accounts_sect4_item .input_container_lest{
+    padding: 27px 20px;
+    background: #F3F3F3;
+    justify-content: space-between;
+    display: flex;
+    border-radius: 0px 0px 9px 9px;
+    background: #F3F3F3;
 }
 
 .accounts_sect4_item form input {
@@ -2819,6 +2896,7 @@ width: 45%;
     line-height: 352.34%;
     color: #A2A2A2;
 }
+
 
 .accounts_send_btn,
 .accounts_sect4_item form input[type="submit"] {
@@ -2836,6 +2914,15 @@ width: 45%;
     margin-top: 20px;
     cursor: pointer;
 }
+
+.c1 .accounts_send_btn{
+    border: none;
+}
+.accounts_sect4_item form input[type="submit"] {
+    margin-bottom: 0px;
+     
+    margin-top: 0px;
+} 
 
 .accounts_sect5_banner {
     background: #F4F4F4;
@@ -3224,10 +3311,10 @@ width: 45%;
 
 
 /*jQuery datapicker*/
-#calendar {
+.accounts_sect4_item #calendar {
     display: flex;
     justify-content: center;
-    margin-top: 12%;
+    margin-top: 15px;
 }
 
 .ui-datepicker-header .ui-datepicker-title {
