@@ -26,7 +26,7 @@ app.set('view engine', 'hbs');
 
 
 //const development = process.argv.pop();
-const development = true;
+const development = false;
 
 let mongodb_url;
 if (development) {
