@@ -242,7 +242,7 @@ $(document).on('change', '#imageUpload', e => {
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: "api/User/InsertLogoImg",
+        url: "api/User/InsertProfileImg",
         data: form,
         processData: false,
         contentType: false,
