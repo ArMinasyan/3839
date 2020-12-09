@@ -26,7 +26,7 @@ app.set('view engine', 'hbs');
 
 
 //const development = process.argv.pop();
-const development = false;
+const development = true;
 
 let mongodb_url;
 if (development) {
@@ -116,7 +116,7 @@ app.get('/sign_in', (req, res, next) => {
 })
 
 app.get('/customer', csrfDefender, VerifyToken, (req, res, next) => {
-    if (req.session.user.path == req.path) res.status(200).send('Comming soon...');
+    if (req.session.user.path == req.path) res.sendFile(__dirname + '/views/dashboard.html');
     else res.redirect(req.session.user.path);
 })
 
@@ -125,7 +125,7 @@ app.get('/therapist', csrfDefender, VerifyToken, (req, res, next) => {
     else res.redirect(req.session.user.path);
 })
 
-app.get('/logout', function(req, res) {
+app.get('/logout', function (req, res) {
     res.clearCookie('token');
     res.clearCookie('_csrf');
     res.clearCookie('connect.sid');
@@ -157,30 +157,30 @@ app.get('/create_stripe_customer/:email', (req, res, next) => {
 //     }
 // })
 
-app.post('/add_card_stripe', async(req, res) => {
+app.post('/add_card_stripe', async (req, res) => {
 
 
-        // const cardDetails = {
-        //     number: req.body.number,
-        //     exp_month: req.body.exp_month,
-        //     exp_year: req.body.exp_year,
-        //     cvc: req.body.cvc,
-        //     name: req.body.name
-        // }
-        //cus_IOpWeXSIgLP9RH
-        //tok_1Ho2OkAiy3fjkRxKdrJahj9Z
-        //tok_1Ho2Q1Aiy3fjkRxKPAN4wrMU
-        // const cardToken = await stripe.tokens.create({
-        //     card: cardDetails
-        // })
+    // const cardDetails = {
+    //     number: req.body.number,
+    //     exp_month: req.body.exp_month,
+    //     exp_year: req.body.exp_year,
+    //     cvc: req.body.cvc,
+    //     name: req.body.name
+    // }
+    //cus_IOpWeXSIgLP9RH
+    //tok_1Ho2OkAiy3fjkRxKdrJahj9Z
+    //tok_1Ho2Q1Aiy3fjkRxKPAN4wrMU
+    // const cardToken = await stripe.tokens.create({
+    //     card: cardDetails
+    // })
 
-        const card = await stripe.customers.createSource(req.params.id, { source: req.body.token_id });
+    const card = await stripe.customers.createSource(req.params.id, { source: req.body.token_id });
 
 
-        console.log('----------------------------------', card)
-    })
-    // app.get('/create_stripe_invoice/:customer_id', async (req, res, next) => {
-    //     const invoice = await stripe.invoices.create({
+    console.log('----------------------------------', card)
+})
+// app.get('/create_stripe_invoice/:customer_id', async (req, res, next) => {
+//     const invoice = await stripe.invoices.create({
 
 //         customer: req.params.customer_id,
 //         metadata: {
@@ -198,7 +198,7 @@ app.get('/testHash/:value', (req, res, next) => {
 
 
 app.get('/client', (req, res, next) => {
-    res.sendFile(__dirname + '/views/home-clients.html');
+    res.sendFile(__dirname + '/views/dashboard.html');
 })
 
 app.get('/therapist', (req, res, next) => {
@@ -264,6 +264,7 @@ app.get('/testAdd', (req, res, next) => {
     })
 
 });
+
 HttpServer.listen(process.env.PORT || 8080, () => {
     console.log('localhost:8080');
 })

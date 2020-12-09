@@ -40,9 +40,6 @@ let updated_links = {
     linkedin: '',
     facebook: '',
     instagram: ''
-
-
-
 }
 
 const allSocialIcons = document.getElementsByClassName('socialIcon');
@@ -203,6 +200,7 @@ card.on('change', function (event) {
         displayError.textContent = '';
     }
 });
+
 $(document).on('click', '#edit_links', e => {
     Swal.fire({
         title: 'Edit soccial links',
@@ -255,6 +253,7 @@ $(document).on('click', '#edit_links', e => {
         }
     })
 })
+
 $(document).on('click', '#edit_main', e => {
 
     Swal.fire({
@@ -584,8 +583,7 @@ $(document).ready(function () {
     });
 
 
-
-
+    
 
     $.get('/api/User/MainData').then(response => {
         let first = '';

@@ -1,0 +1,1050 @@
+.op-1 {
+    opacity: 1 !important;
+}
+
+.hide {
+    display: none;
+}
+
+.therapist_carousel {
+    margin: 40px 0 85px 0;
+}
+
+.therapist_carousel .carousel-item > div {
+    display: inline-block;
+    height: auto;
+    max-width: 156px;
+    margin: 0 13px 0 0;
+    padding: 0;
+}
+
+.therapist_carousel .carousel-item > div .carousel-item-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 0;
+    margin: 0 0 3px 0;
+}
+
+.therapist_carousel .carousel-item > div .carousel-item-head .name {
+    font-family: "SFProDisplay-Light", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: initial;
+    color: #CABC40;
+}
+
+.therapist_carousel .carousel-item > div .carousel-item-head .km {
+    font-family: "SFProDisplay-Light", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: initial;
+    color: #979797;
+}
+
+.therapist_carousel .carousel-item > div .book-new_btn {
+    width: 100%;
+    background-color: #028383;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: initial;
+    border: none;
+    color: #FFFFFF;
+    padding: 5px 15px;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 1;
+}
+
+.therapist_carousel .carousel-item > div .request-bar {
+    height: auto;
+    background-color: #fff;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.therapist_carousel .carousel-item > div .request-bar p {
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: initial;
+    color: #474747;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.therapist_carousel .carousel-item > div .request-bar label {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.therapist_carousel .carousel-item > div .request-bar textarea {
+    max-width: 100%;
+    width: 100%;
+    border: 0.5px solid #DEDEDE;
+    box-sizing: border-box;
+    border-radius: 2px;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 8px;
+    line-height: initial;
+    color: #474747;
+    max-height: 70px;
+    min-height: 70px;
+    overflow: auto;
+}
+
+.therapist_carousel .carousel-item > div .request-bar .sendRequest-btn {
+    background: #F1AE00;
+    width: 100%;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: initial;
+    border: none;
+    color: #FFFFFF;
+    padding: 5px 15px;
+    margin: 17px 0 0 0;
+}
+
+.therapist_carousel .carousel-item > div:last-child {
+    margin: 0;
+}
+
+.therapist_carousel .carousel-item > div .img-bar {
+    position: relative;
+    height: 185px;
+}
+
+.therapist_carousel .carousel-item > div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.therapist_carousel .carousel-item > div .question-bar {
+    color: #AC4C5D;
+    border: 1px solid #AC4C5D;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 32px 5px 0 0;
+}
+
+.therapist_carousel .carousel-item > div .favorite-item-btn {
+    padding: 0;
+    border: none;
+    outline: none;
+    position: absolute;
+    background-color: transparent;
+    right: 0;
+    top: 0;
+    display: flex;
+    margin: 7px 5px 0 0;
+}
+
+.therapist_carousel .carousel-item > div .favorite-item-btn.active svg path {
+    fill: #AC4C5D;
+}
+
+.therapist_carousel .carousel-control-prev,
+.therapist_carousel .carousel-control-next {
+    width: auto;
+    padding: 0 15px;
+    height: 236px;
+}
+
+.therapist_carousel .no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.therapist_carousel .carousel-inner {
+    max-width: 503px;
+}
+
+h1.welcome_userName {
+    font-family: "Roboto-Regular", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 51px;
+    line-height: 117.19%;
+    max-width: 1240px;
+    margin: 31px auto 17px;
+    color: #028383;
+}
+
+.welcome-user-dashboard {
+    width: 100%;
+    margin: auto;
+    display: flex;
+}
+
+.welcome-user-dashboard .content-name {
+    padding: 4px 15px 9px;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 20px;
+    background-color: #fff;
+    color: #028383;
+}
+
+
+.welcome-user-dashboard > div > div:nth-child(2) {
+    max-width: 620px;
+    padding: 33px 0;
+    height: 100%;
+    max-height: 1200px;
+}
+
+.welcome-user-dashboard > div:nth-child(1) > div:nth-child(2) {
+    margin: 0 0 0 auto;
+    background-color: #F3F3F3;
+}
+
+.welcome-user-dashboard > div:nth-child(2) > div:nth-child(2) {
+    padding: 50px 26px 50px 28px;
+    background-color: #E8EEED;
+}
+
+.welcome-user-dashboard .menu-item {
+    display: flex;
+    padding: 8px 0;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.welcome-user-dashboard .menu-item div {
+    max-width: 620px;
+    display: flex;
+    width: 100%;
+}
+
+.welcome-user-dashboard .menu-item div {
+    margin: 0 0 0 auto;
+}
+
+.aside_you .menu-item div {
+    margin: 0;
+}
+
+.welcome-user-dashboard .menu-item p {
+    margin: 0 7px 0 0;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 20px;
+    color: #474747;
+}
+
+.welcome-user-dashboard .menu-item span {
+    max-width: 13px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-user-dashboard .menu-item span img {
+    max-width: 100%;
+}
+
+.welcome-user-dashboard .aside_dashboard {
+    background-color: #ffffff;
+    width: 50%;
+}
+
+.welcome-user-dashboard .booking-banner {
+    margin: 20px 0 0 0;
+}
+
+.welcome-user-dashboard .booking-banner .booking-switch-menu {
+    display: flex;
+}
+
+.welcome-user-dashboard .booking-banner .booking-switch-menu > button {
+    width: 50%;
+    border: none;
+    border-bottom: 4px solid #D6D6D6;
+    background-color: transparent;
+    transition: .5s ease;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: initial;
+    color: #D6D6D6;
+    padding: 0 0 5px 50px;
+}
+
+.welcome-user-dashboard .booking-banner .booking-switch-menu > button.active {
+    border-color: #028383;
+    color: #474747;
+}
+
+.welcome-user-dashboard .booking-banner .booking-body {
+    padding: 33px 0 0 0;
+}
+
+.welcome-user-dashboard .booking-banner .booking-body > div {
+    width: 100%;
+    height: 500px;
+}
+
+.booking-upcoming-item {
+    display: flex;
+    margin: 0 0 28px 0;
+}
+
+.booking-upcoming-item:last-child {
+    margin: 0;
+}
+
+.booking-upcoming-item .aside-left {
+    width: 156px;
+    height: 118px;
+    margin: 0 30px 0 50px;
+    background: #028383;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.booking-upcoming-item .aside-left h3 {
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 33px;
+    line-height: initial;
+    color: #FFFFFF;
+}
+
+.booking-upcoming-item .aside-left p {
+    font-family: "SFProDisplay-Light", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: initial;
+    color: #FFFFFF;
+}
+
+.booking-upcoming-item .aside-right {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.booking-upcoming-item .aside-right h3 {
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: initial;
+    color: #5d5d5d;
+}
+
+.booking-upcoming-item .aside-right p {
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: initial;
+    color: #b6b6b6;
+}
+
+.booking-upcoming-item .aside-right .cencel-btn {
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: initial;
+    text-align: left;
+    color: #e42828;
+    max-width: max-content;
+    padding: 0;
+    border: none;
+}
+
+.show-calendar {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    margin: 0 0 0 50px;
+    padding: 0;
+}
+
+.show-calendar span {
+    font-family: "SFProDisplay-Light", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: initial;
+    color: #474747;
+
+}
+
+.show-calendar .icon-bar {
+    max-width: 13px;
+    margin: 0 0 0 5px;
+}
+
+.show-calendar .icon-bar img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.welcome-user-dashboard .aside_you {
+    background-color: #ffffff;
+    width: 50%;
+}
+
+.welcome-user-dashboard .aside_you .personal-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-left {
+    margin: 50px 0 0 0;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-left p {
+    margin: 0 0 10px 0;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-left p:nth-child(3) {
+    margin: 0;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-left .edit_setting {
+    margin: 15px 0 0 0;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-left p span {
+    font-family: "SFProDisplay-Light", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: initial;
+    color: #979797;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-left p span.ps-val {
+    color: #000000;
+}
+
+.avatar-upload {
+    position: relative;
+    max-width: 255px;
+}
+
+.avatar-upload .avatar-edit {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    margin: 0 10px 8px 0
+}
+
+.avatar-upload .avatar-edit input {
+    display: none;
+}
+
+.avatar-upload .avatar-edit input + label {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin: 0;
+}
+
+.avatar-upload .avatar-preview {
+    position: relative;
+    width: 255px;
+    height: 207px;
+    background-color: #C4C4C4;
+    border-radius: 7px;
+}
+
+.avatar-upload .avatar-preview > div {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .add-link-bar {
+    margin: 18px 0 16px 0;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .add-link-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 8px 0;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .add-link-item:last-child {
+    margin: 0;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .add-link-item button {
+    border: none;
+    padding: 0;
+    font-family: "SFProDisplay-Bold", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 29px;
+    color: #6D6D6D;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .add-link-item button span {
+    color: #028383;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .add-link-item .icon-bar img {
+    max-width: 24px;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .social-med-item {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 0 16px 0;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .social-med-item:last-child {
+    margin: 0;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .social-med-item span {
+    width: 18px;
+    height: 18px;
+    margin: 0 13px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .social-med-item span:last-child {
+    font-family: "SFProDisplay-Bold", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: initial;
+    color: #EE6B33;
+    margin: 0;
+}
+
+.welcome-user-dashboard .aside_you .personal-info .aside-right .social-med-item span img {
+    max-width: 100%;
+}
+
+.create-an {
+    display: flex;
+    margin: 24px 0 15px 0;
+}
+
+.create-an > div {
+    width: 50%;
+    height: 287px;
+    max-width: 274px;
+    background-color: #ffffff;
+    border-radius: 0 0 9px 9px;
+}
+
+.create-an .create-an-invoice {
+    margin: 0 19px 0 0;
+    padding: 16px 13px;
+}
+
+.create-an .create-an-invoice h2 {
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    margin: 0 0 30px 0;
+    color: #028383;
+}
+
+.create-an .create-an-invoice label {
+    margin: 0 0 5px 0;
+    width: 100%;
+    max-width: 237px;
+}
+
+.create-an .create-an-invoice input::placeholder {
+    color: #A2A2A2;
+}
+
+.create-an .create-an-invoice input {
+    width: 100%;
+    max-width: 100%;
+    border: 0.5px solid #CACACA;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 9px 15px;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: initial;
+    /* or 39px */
+    color: #A2A2A2;
+}
+
+.create-an .create-an-invoice .send-btn {
+    width: 114px;
+    height: 29px;
+    background: #028383;
+    border-radius: 5px;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: initial;
+    border: none;
+    padding: 5px 15px;
+    color: #FFFFFF;
+    margin: 20px 0 0 0;
+    text-transform: uppercase;
+}
+
+.create-an .create-an-video {
+    position: relative;
+}
+
+.create-an .create-an-video .video_call_btn {
+    position: absolute;
+    right: 0;
+    left: initial;
+    bottom: 0;
+    margin: 0 17px 12px 0;
+    padding: 0;
+}
+
+.i-calendar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 252px;
+    background: #FFFFFF;
+    border-radius: 0 0 9px 9px;
+    position: relative;
+}
+
+
+.i-calendar h2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: initial;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 20px;
+    margin: 0 0 11px 13px;
+    color: #028383;
+}
+
+/* Calendar */
+.i-calendar #calendar .ui-datepicker{
+    font-size: 80%;
+}
+
+.i-calendar .accounts_send_btn{
+    width: 114px;
+    height: 29px;
+    background: #028383;
+    border-radius: 5px;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: initial;
+    border: none;
+    padding: 5px 15px;
+    color: #FFFFFF;
+    margin: 5px 0 0 0;
+    text-transform: uppercase;
+}
+.bell-btn {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0 0 0 17px;
+}
+
+.bell-btn.active-bell::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: #FF0000;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px 5px 0 0;
+    border-radius: 50%;
+}
+
+.userAvatar-head-bar {
+    display: flex;
+    align-items: center;
+}
+
+.userAvatar-head-bar .img-bar {
+    width: 42px;
+    height: 42px;
+    margin: 0 13px;
+    border-radius: 50%;
+}
+
+.userAvatar-head-bar .img-bar img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userAvatar-head-bar .name-bar {
+    display: flex;
+    align-items: center;
+}
+
+.userAvatar-head-bar .name-bar span {
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #4F4F4F;
+}
+.userAvatar-head-bar .name-bar span img {
+    max-width: 13px;
+    height: auto;
+    display: block;
+    margin: 0 0 0 5px;
+
+}
+
+/*  @medias  */
+
+@media (max-width: 1240px) {
+    .welcome-user-dashboard {
+        max-width: 1200px;
+    }
+
+    .welcome-user-dashboard > div {
+        max-width: 600px;
+    }
+
+    section {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .welcome-user-dashboard {
+        flex-direction: column;
+    }
+
+    section .welcome-user-dashboard > div {
+        max-width: 100%;
+        width: 100% !important;
+    }
+
+    .welcome-user-dashboard > div > div:nth-child(2) {
+        margin: auto !important;
+    }
+
+    .welcome-user-dashboard .menu-item div {
+        margin: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-menu ul li a,
+    .userAvatar-head-bar .name-bar span,
+    .header_searchBar input[type="search"] {
+        font-size: 12px;
+    }
+
+    .header_searchBar input[type="search"] {
+        max-width: 145px;
+    }
+
+    .header_searchBar .search_form_btn {
+        width: 30px;
+    }
+
+    .header_searchBar .search_form_btn img, .header_searchBar .search_form_btn i {
+        width: 12px;
+        height: 12px;
+    }
+
+    .nav-bar {
+        padding: 0;
+    }
+
+    .therapist_carousel .carousel-item > div {
+        max-width: 140px;
+        margin: 0 10px 0 0;
+    }
+
+    .therapist_carousel .carousel-inner {
+        max-width: max-content;
+    }
+
+    h1.welcome_userName {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 769px) {
+    h1.welcome_userName {
+        font-size: 35px;
+    }
+
+    .booking-upcoming-item .aside-right p,
+    .booking-upcoming-item .aside-right h3,
+    .booking-upcoming-item .aside-right .cencel-btn,
+    .welcome-user-dashboard .aside_you .personal-info .aside-left p span {
+        font-size: 14px;
+
+    }
+
+    .welcome-user-dashboard > div:nth-child(2) > div:nth-child(2) {
+        padding: 30px 15px 30px 15px;
+    }
+
+    .welcome-user-dashboard .booking-banner .booking-body > div {
+        height: auto;
+    }
+
+    .avatar-upload .avatar-preview {
+        width: 230px;
+    }
+
+    .booking-upcoming-item .aside-left p,
+    .welcome-user-dashboard .booking-banner .booking-switch-menu > button, .show-calendar span,
+    .welcome-user-dashboard .menu-item p,
+    .edit_setting,
+    .i-calendar h2,
+    .welcome-user-dashboard .aside_you .personal-info .aside-right .add-link-item button {
+        font-size: 15px;
+    }
+
+    .create-an .create-an-invoice h2 {
+        font-size: 17px;
+        margin: 0 0 15px 0;
+    }
+
+    .booking-upcoming-item .aside-left h3 {
+        font-size: 25px;
+    }
+
+    .therapist_carousel .carousel-control-prev span,
+    .therapist_carousel .carousel-control-next span {
+        background-color: #028383;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .therapist_carousel .carousel-control-prev span svg,
+    .therapist_carousel .carousel-control-next span svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .therapist_carousel .carousel-item > div {
+        max-width: 100px;
+        margin: 0 6px 0 0;
+    }
+
+    .therapist_carousel .carousel-item > div .img-bar {
+        height: 130px;
+    }
+
+    .therapist_carousel .carousel-control-prev, .therapist_carousel .carousel-control-next {
+        height: 178px;
+    }
+
+    .therapist_carousel {
+        margin: 30px 0;
+    }
+
+    .therapist_carousel .carousel-item > div .request-bar .sendRequest-btn,
+    .therapist_carousel .carousel-item > div .book-new_btn,
+    .therapist_carousel .carousel-item > div .carousel-item-head .name,
+    .therapist_carousel .carousel-item > div .carousel-item-head .km {
+        font-size: 10px;
+    }
+
+    .therapist_carousel .carousel-item > div .favorite-item-btn svg {
+        width: 12px;
+    }
+
+    .welcome-user-dashboard .content-name {
+        font-size: 14px;
+        padding: 3px 15px;
+    }
+
+    .therapist_carousel .carousel-item > div .question-bar {
+        width: 12px;
+        height: 12px;
+        font-size: 8px;
+        margin: 25px 5px 0 0;
+    }
+
+    .booking-upcoming-item .aside-left p, .welcome-user-dashboard .booking-banner .booking-switch-menu > button,
+    .show-calendar span, .welcome-user-dashboard .menu-item p, .edit_setting, .i-calendar h2,
+    .welcome-user-dashboard .aside_you .personal-info .aside-right .add-link-item button {
+        font-size: 12px;
+    }
+
+    .booking-upcoming-item .aside-right p, .booking-upcoming-item .aside-right h3,
+    .booking-upcoming-item .aside-right .cencel-btn,
+    .welcome-user-dashboard .aside_you .personal-info .aside-left p span {
+        font-size: 12px;
+    }
+
+    .booking-upcoming-item .aside-left,
+    .show-calendar {
+        margin: 0 20px;
+    }
+
+    h1.welcome_userName {
+        font-size: 20px;
+    }
+
+    .welcome-user-dashboard .aside_you .personal-info,
+    .create-an {
+        flex-direction: column;
+    }
+
+    .welcome-user-dashboard .aside_you .personal-info > div,
+    .avatar-upload .avatar-preview,
+    .create-an .create-an-invoice label,
+    .avatar-upload {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .avatar-upload .avatar-preview {
+        height: 230px;
+    }
+
+    .create-an > div {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .create-an .create-an-invoice {
+        margin: 0;
+    }
+
+    .create-an .create-an-video {
+        margin: 20px 0 0 0;
+    }
+
+    .welcome-user-dashboard > div > div:nth-child(2) {
+        max-height: initial;
+    }
+
+    .welcome-user-dashboard .aside_you .personal-info .aside-left {
+        margin: 0;
+    }
+}
+
+.accounts_social_menu{
+    margin-top: 10px;
+}
+
+.accounts_social_menu ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.accounts_social_menu ul li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 35px;
+}
+
+.accounts_social_menu ul li .link_text {
+    margin-right: 20px;
+    font-weight: 500;
+    color: #028383;
+    font-size: 1.2em;
+}
+
+.accounts_social_menu svg,
+.accounts_social_menu img {
+    width: auto;
+}
+
+.accounts_social_menu ul li.add_link svg path {
+    fill: #DFDFDF;
+}
+
+.accounts_social_menu ul li.added_link svg path {
+    fill: #404040;
+}
+
+.accounts_social_menu button {
+    font-family: "SFProDisplay-Regular";
+    font-size: 20px;
+    line-height: 170.34%;
+    color: #4D4D4D;
+}
+
+.accounts_social_menu button span {
+    color: #028383;
+    font-family: "SFProDisplay-Bold";
+    font-weight: 800;
+}
+
+.accounts_social_menu button img {
+    width: auto;
+}
