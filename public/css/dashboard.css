@@ -1048,3 +1048,9 @@ h1.welcome_userName {
 .accounts_social_menu button img {
     width: auto;
 }
+
+
+#profileimg_set{
+    width: 255px;
+    height: 207px;
+}
