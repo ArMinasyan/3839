@@ -253,8 +253,7 @@ $(document).on('change', '#imageUpload', e => {
                 closeOnClickOutside: false
             });
             else {
-
-                $('#profileimg_set').attr('src', 'https://therapybubbleimages.fra1.digitaloceanspaces.com/ProfileImages/' + response.profile_img);
+                $('#profileimg_set').attr('src', 'https://therapybubbleimages.fra1.digitaloceanspaces.com/ProfileImages/' + response.profileImgPath);
                 $('.profileAvatar').css('border', 'none');
             }
 
