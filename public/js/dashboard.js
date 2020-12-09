@@ -238,7 +238,7 @@ $(document).ready(function () {
 $(document).on('change', '#imageUpload', e => {
     $(this).val('');
     const form = new FormData();
-    form.append('logoImage', e.target.files[0]);
+    form.append('profileImage', e.target.files[0]);
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
@@ -253,8 +253,8 @@ $(document).on('change', '#imageUpload', e => {
                 closeOnClickOutside: false
             });
             else {
-                $('#logoimg_set').attr('src', 'https://therapybubbleimages.fra1.digitaloceanspaces.com/LogoImages/' + response.logo_img);
-                $('.logoAvatar').css('border', 'none');
+                $('#profileimg_set').attr('src', 'https://therapybubbleimages.fra1.digitaloceanspaces.com/ProfileImages/' + response.logo_img);
+                $('.profileAvatar').css('border', 'none');
             }
 
         }
