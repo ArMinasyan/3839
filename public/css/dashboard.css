@@ -487,8 +487,10 @@ h1.welcome_userName {
     position: relative;
     width: 255px;
     height: 207px;
-    background-color: #C4C4C4;
+    position: relative;
     border-radius: 7px;
+    border: 1px solid #028383;
+    outline: none;
 }
 
 .avatar-upload .avatar-preview > div {
@@ -583,6 +585,35 @@ h1.welcome_userName {
 .create-an .create-an-invoice {
     margin: 0 19px 0 0;
     padding: 16px 13px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Calendar */
+.create-an-invoice #calendar{
+    margin-top: 20px;
+}
+
+.create-an-invoice #calendar .ui-datepicker{
+    font-size: 90%;
+}
+
+.create-an .create-an-invoice .accounts_send_btn{
+    width: 114px;
+    height: 29px;
+    background: #028383;
+    border-radius: 5px;
+    font-family: "SFProDisplay-Regular", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: initial;
+    border: none;
+    padding: 5px 15px;
+    color: #FFFFFF;
+    margin: 5px 0 0 0;
 }
 
 .create-an .create-an-invoice h2 {
@@ -678,27 +709,7 @@ h1.welcome_userName {
     color: #028383;
 }
 
-/* Calendar */
-.i-calendar #calendar .ui-datepicker{
-    font-size: 80%;
-}
 
-.i-calendar .accounts_send_btn{
-    width: 114px;
-    height: 29px;
-    background: #028383;
-    border-radius: 5px;
-    font-family: "SFProDisplay-Regular", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 11px;
-    line-height: initial;
-    border: none;
-    padding: 5px 15px;
-    color: #FFFFFF;
-    margin: 5px 0 0 0;
-    text-transform: uppercase;
-}
 .bell-btn {
     position: relative;
     border: none;
@@ -980,6 +991,7 @@ h1.welcome_userName {
 
     .create-an .create-an-invoice {
         margin: 0;
+      
     }
 
     .create-an .create-an-video {
@@ -1050,7 +1062,14 @@ h1.welcome_userName {
 }
 
 
-#profileimg_set{
+/* #profileimg_set{
     width: 255px;
     height: 207px;
-}
+} */
+
+
+/* width: 262px;
+height: 262px;
+position: relative;
+border-radius: 7px;
+border: 1px solid #028383; */

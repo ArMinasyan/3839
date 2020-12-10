@@ -23,7 +23,7 @@ module.exports.VerifyPhonePin = async (req, res, next) => {
         res.status(200).json({
             type: 'phone',
             valid: code_state.valid,
-            
+
         })
     }
 }

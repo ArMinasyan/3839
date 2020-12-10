@@ -28,8 +28,9 @@ $(document).on('click', '#send_pin_email, #send_pin_phone', function (e) {
         } else {
             if (res) {
                 $(`#${part}_error`).text('');
-                $('#send_pin_' + part).prop('disabled', true);
+                // $('#send_pin_' + part).prop('disabled', true);
                 $(`#${part}_pin`).removeAttr('disabled');
+                $(`#${part}_pin`).css('border', '1px solid #00ADB9');
             }
         }
     })
@@ -56,7 +57,8 @@ function emailVerify(stepContentNext) {
 }
 
 function phoneVerify(data) {
-    $.post('auth/verify_pin_phone', {
+
+    $.post('/auth/verify_pin_phone', {
         phone: $('#reg_phone').val(),
         pin: $('#phone_pin').val()
     }).then(res => {
@@ -67,9 +69,12 @@ function phoneVerify(data) {
             $(`#phone_pin_error`).text('Incorrect verification code.');
             $(`#phone_pin_error`).css('display', 'block');
         } else {
+            console.log(data);
+
             $.ajax({
                 method: 'POST',
                 data: data,
+
                 url: '/auth/sign_up',
                 success: function (res) {
                     if (res.err) {
@@ -78,8 +83,13 @@ function phoneVerify(data) {
                         $(`#${res.err.param}_error`).css('display', 'block');
 
                     } else {
-                        window.location.href = data.customer?'/customer':'/therapist';
+
+                        console.log('Signup ' + data);
+                        if (data.customer) window.location.assign('/customer');
+                        else window.location.assign('/therapist');
                     }
+
+
                 }
             })
         }
@@ -110,7 +120,7 @@ $(document).ready(function () {
         lastName: "",
         phone: "",
         phone_pin: "",
-        customer:true
+        customer: true
     };
 
     let last_field = '#username_error';
@@ -138,10 +148,10 @@ $(document).ready(function () {
         })
     })
 
-    let _isCustomer=true;
-$(document).on('change','.type_radio',e=>{
-  _isCustomer=e.target.value;
-})
+    let _isCustomer = true;
+    $(document).on('change', '.type_radio', e => {
+        _isCustomer = e.target.value;
+    })
     $(document).on('click', '#next, #reg_btn', function (e) {
 
         $(last_field).text('');
@@ -155,31 +165,32 @@ $(document).on('change','.type_radio',e=>{
             data[key] = $(`input[name=${key}]`).val();
         })
 
-        data.customer=_isCustomer;
+        data.customer = _isCustomer;
 
 
 
         if ($('#email_pin').val() !== '' && !valid.email) emailVerify(stepContentNext);
         else
-        if ($('#phone_pin').val() !== '' && !valid.phone) phoneVerify(data);
-        else {
-            $.ajax({
-                method: 'POST',
-                data: data,
-                url: '/auth/sign_up',
-                success: function (res) {
-                    if (res.err) {
-                        last_field = `#${res.err.param}_error`;
-                        $(`#${res.err.param}_error`).text(res.err.msg);
-                        $(`#${res.err.param}_error`).css('display', 'block');
+            if ($('#phone_pin').val() !== '' && !valid.phone) phoneVerify(data);
+            else {
+                console.log('Sign up');
+                $.ajax({
+                    method: 'POST',
+                    data: data,
+                    url: '/auth/sign_up',
+                    success: function (res) {
+                        if (res.err) {
+                            last_field = `#${res.err.param}_error`;
+                            $(`#${res.err.param}_error`).text(res.err.msg);
+                            $(`#${res.err.param}_error`).css('display', 'block');
 
-                    } else {
-                        $('#step_1').attr('hidden', true);
-                        $('#step_2').removeAttr('hidden');
+                        } else {
+                            $('#step_1').attr('hidden', true);
+                            $('#step_2').removeAttr('hidden');
+                        }
                     }
-                }
-            })
-        }
+                })
+            }
     });
 
 

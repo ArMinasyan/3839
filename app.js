@@ -26,7 +26,7 @@ app.set('view engine', 'hbs');
 
 
 //const development = process.argv.pop();
-const development = false;
+const development = true;
 
 let mongodb_url;
 if (development) {
@@ -116,6 +116,7 @@ app.get('/sign_in', (req, res, next) => {
 })
 
 app.get('/customer', csrfDefender, VerifyToken, (req, res, next) => {
+    console.log(req.session);
     if (req.session.user.path == req.path) res.sendFile(__dirname + '/views/dashboard.html');
     else res.redirect(req.session.user.path);
 })
@@ -197,13 +198,13 @@ app.get('/testHash/:value', (req, res, next) => {
 })
 
 
-app.get('/client', (req, res, next) => {
-    res.sendFile(__dirname + '/views/dashboard.html');
-})
+// app.get('/client', (req, res, next) => {
+//     res.sendFile(__dirname + '/views/dashboard.html');
+// })
 
-app.get('/therapist', (req, res, next) => {
-    res.sendFile(__dirname + '/views/home-therapist.html');
-})
+// app.get('/therapist', (req, res, next) => {
+//     res.sendFile(__dirname + '/views/home-therapist.html');
+// })
 
 app.get('/test', (req, res, next) => {
     res.sendFile(__dirname + '/views/test.html');

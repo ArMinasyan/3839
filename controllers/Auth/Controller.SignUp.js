@@ -1,6 +1,9 @@
 const User = require('../../models/User');
 const UserPageData = require('../../models/UserPageData');
 
+const Stripe = require('stripe').Stripe;
+const stripe = new Stripe(process.env.STRIPE_TEST_PRIVATE);
+
 const {
     validationResult
 } = require('express-validator');
@@ -12,7 +15,7 @@ const {
 } = require('../../helpers/Helper.Token');
 
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
     const valid = validationResult(req);
     if (!valid.isEmpty()) res.json({
         err: valid.array()[0]
@@ -31,16 +34,24 @@ module.exports = (req, res, next) => {
             customer
         } = req.body;
 
-        
+
         const user = new User({
             email: email,
             password: CreateHash(password),
             customer: customer
         });
+
+        const SCustomer = await stripe.customers.create({
+            name: firstName + ' ' + lastName,
+            email: email
+        });
+
+
         user.save(err => {
             if (!err) {
                 const userPageData = new UserPageData({
                     user_id: user._id,
+                    stripe_customer_id: SCustomer.id,
                     firstName: firstName,
                     lastName: lastName,
                     contact: {
@@ -57,11 +68,14 @@ module.exports = (req, res, next) => {
                         res.cookie('token', CreateToken({
                             id: user._id,
                             email: user.email,
-                            date: Date.now()
+                            date: Date.now(),
+                            path: user.customer ? '/customer' : '/therapist'
                         }), {
                             httpOnly: true
                         });
-                        res.status(200).end();
+                        res.status(200).json({
+                            customer: customer
+                        });
                     }
                 })
             }
